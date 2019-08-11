@@ -1,0 +1,61 @@
+body {
+
+}
+
+.btn-white {
+  color: #fff;
+  border: 2px solid #fff;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 10px;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+
+  &:hover {
+    color: #fff;
+    box-shadow: 0 0 15px 5px #0ff;
+  }
+}
+
+/* header*/
+.logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #f99;
+  text-transform: capitalize;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: #fff;
+    text-decoration: none;
+  }
+}
+
+/*top*/
+.pg {
+  background-image: url(rope-1468951_1280.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.top-wrapper {
+  width: 100vw;
+  height: 100vh;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.top-hero-container {
+  padding-top: 70px;
+  h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    margin-bottom: 60px;
+  }
+}

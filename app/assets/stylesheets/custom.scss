@@ -7,12 +7,18 @@ body {
   background-size: cover;
 }
 
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .btn-white {
   color: #fff;
   border: 2px solid #fff;
   padding-top: 15px;
   padding-bottom: 15px;
-  margin: 10px;
+  margin: 10px 0;
   font-size: 20px;
   background-color: rgba(0, 0, 0, 0.3);
 
@@ -38,21 +44,30 @@ body {
 }
 
 /*top*/
-
-.top-wrapper {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.3);
-}
-
 .top-hero-container {
   padding-top: 70px;
   h1 {
     font-size: 50px;
     margin-bottom: 20px;
   }
-
   h2 {
     margin-bottom: 60px;
+  }
+}
+
+/*sign up*/
+.users-new-container {
+  padding-top: 70px;
+}
+
+.form-group {
+  margin: 30px 0;
+}
+
+.user-new {
+  color: #fff;
+  &:hover {
+    color: #ff0;
+    text-decoration: none;
   }
 }

@@ -1,5 +1,10 @@
 body {
-
+  color: #fff;
+  background-image: url(rope-1468951_1280.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
 .btn-white {
@@ -33,18 +38,10 @@ body {
 }
 
 /*top*/
-.pg {
-  background-image: url(rope-1468951_1280.jpg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
 
 .top-wrapper {
   width: 100vw;
   height: 100vh;
-  color: #fff;
   background-color: rgba(0, 0, 0, 0.3);
 }
 

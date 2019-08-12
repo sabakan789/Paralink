@@ -6,7 +6,7 @@ services:
     environment:
       POSTGRES_PASSWORD: example
     volumes:
-      - ./postgres-date:/var/lib/postgresql/data
+      - ./postgres-date:/var/lib/postgresql/date
     tty: true
   web:
     build: .

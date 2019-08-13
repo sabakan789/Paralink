@@ -17,7 +17,7 @@
       <nav>
         <ul class="nav navbar-nav navbar-right ">
           <li><%= link_to "新規登録", new_user_path%></li>
-          <li><%= link_to "ログイン", '#'%></li>
+          <li><%= link_to "ログイン", login_path%></li>
           <li><%= link_to "投稿する", '#' %></li>
         </ul>
       </nav>
@@ -27,7 +27,7 @@
     <div class="alert alert-<%= key %>" role="alert"><%= value %></div>
   <% end %>
   <%= yield %>
-  
+
   <script>
     $(function(){
       $(".alert").fadeOut(5000);

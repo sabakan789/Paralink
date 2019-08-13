@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-offset-4 col-md-4 users-new-container">
         <h1 class="text-conteiner text-white">新規登録</h1>
-        <%= form_for(@user, url: users_path, method: :post) do |f| %>
+        <%= form_for @user do |f| %>
           <div class="form-group">
             <%= f.label :name, '名前' , class: 'text-white' %>
             <%= f.text_field :name, class: 'form-control' %>

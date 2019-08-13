@@ -16,13 +16,20 @@
       <%= link_to "パラリンク", root_path, class:"logo"%>
       <nav>
         <ul class="nav navbar-nav navbar-right ">
-          <li><%= link_to "新規登録", new_user_path%></li>
-          <li><%= link_to "ログイン", login_path%></li>
-          <li><%= link_to "投稿する", '#' %></li>
-        </ul>
+          <% if logged_in? %>
+            <li><%= link_to "&&&", '#'%></li>
+            <li><%= link_to "ログアウト", logout_path%></li>
+            <li><%= link_to "投稿する", '#' %></li>
+          <% else %>
+            <li><%= link_to "新規登録", new_user_path%></li>
+            <li><%= link_to "ログイン", login_path%></li>
+            <li><%= link_to "投稿する", '#' %></li>
+          <% end %>
+          </ul>
       </nav>
     </div>
   </header>
+
   <% flash.each do |key, value| %>
     <div class="alert alert-<%= key %>" role="alert"><%= value %></div>
   <% end %>

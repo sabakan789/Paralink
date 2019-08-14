@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root 'homes#top'
   resources :users
+  resources :microposts
 
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

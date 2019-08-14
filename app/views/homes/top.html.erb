@@ -3,15 +3,31 @@
     <h1 class="text-white">パラリンク</h1>
     <h2 class="text-white">「パラリンク」は​障害者・介護者・親族が<br>繋がる事ができるサービスです</h2>
     <div class="row">
-      <div class="col-md-offset-4 col-md-4">
-        <%= link_to '新規登録', new_user_path, class: 'btn btn-block btn-white' %>
-      </div>
-      <div class="col-md-offset-4 col-md-4">
-        <%= link_to 'ログイン', login_path, class: 'btn btn-block btn-white' %>
-      </div>
-      <div class="col-md-offset-4 col-md-4">
-        <%= link_to '投稿を見る', '#',  class: 'btn btn-block btn-white' %>
-      </div>
+      <% if logged_in? %>
+        <div class="col-md-offset-4 col-md-4">
+          <%= link_to 'マイページへ', '#', class: 'btn btn-block btn-white' %>
+        </div>
+        <div class="col-md-offset-4 col-md-4">
+          <%= link_to '投稿する', new_micropost_path, class: 'btn btn-block btn-white' %>
+        </div>
+        <div class="col-md-offset-4 col-md-4">
+          <%= link_to '投稿を見る', '#', class: 'btn btn-block btn-white' %>
+        </div>
+        <div class="col-md-offset-4 col-md-4">
+          <%= link_to 'ログアウト', logout_path, method: :delete,  class: 'btn btn-block btn-white' %>
+        </div>
+      <% else %>
+        <div class="col-md-offset-4 col-md-4">
+          <%= link_to '新規登録', new_user_path, class: 'btn btn-block btn-white' %>
+        </div>
+        <div class="col-md-offset-4 col-md-4">
+          <%= link_to 'ログイン', login_path, class: 'btn btn-block btn-white' %>
+        </div>
+        <div class="col-md-offset-4 col-md-4">
+          <%= link_to '投稿を見る', '#',  class: 'btn btn-block btn-white' %>
+        </div>
+      <% end %>
+
     </div>
   </div>
 </div>

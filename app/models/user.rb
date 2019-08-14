@@ -11,4 +11,6 @@ class User < ApplicationRecord
   validates :password, presence: true, format: { with: PW_REGEX }
 
   has_secure_password
+
+  has_many :microposts, dependent: :destroy
 end

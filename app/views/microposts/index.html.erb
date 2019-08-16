@@ -1,0 +1,16 @@
+<div class="micropost-index-wrapper">
+  <div class="container">
+    <% @topics.each do |topic| %>
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="micropost-index-single">
+            <h2 class="micropost-author">
+              <%= micropost.user.name %>
+            </h2>
+            <%= micropost.user.content %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

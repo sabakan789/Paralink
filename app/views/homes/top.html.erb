@@ -5,7 +5,7 @@
     <div class="row">
       <% if logged_in? %>
         <div class="col-md-offset-4 col-md-4">
-          <%= link_to 'マイページへ', '#', class: 'btn btn-block btn-white' %>
+          <%= link_to 'マイページへ', root_path,  class: 'btn btn-block btn-white' %>
         </div>
         <div class="col-md-offset-4 col-md-4">
           <%= link_to '投稿する', new_micropost_path, class: 'btn btn-block btn-white' %>

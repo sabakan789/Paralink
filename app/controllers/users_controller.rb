@@ -3,6 +3,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts
@@ -17,7 +21,6 @@ class UsersController < ApplicationController
       render :new
     end
   end
-
 
   def edit
     @user = User.find(params[:id])

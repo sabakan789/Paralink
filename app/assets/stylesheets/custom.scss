@@ -58,7 +58,7 @@ body {
     margin-bottom: 20px;
   }
   h2 {
-    margin-bottom: 60px;
+    margin-bottom: 30px;
   }
 }
 
@@ -92,9 +92,11 @@ body {
 .micropost-conteiner {
   border: 2px solid #fff;
   margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .micropost-user-name {
+  width: 15px;
   font-size: 20px;
   font-weight: bold;
 }
@@ -102,4 +104,8 @@ body {
 .micropost-content {
   padding: 20px;
   width: 80%;
+}
+
+.index-user-name {
+  padding: 20ox 0;
 }

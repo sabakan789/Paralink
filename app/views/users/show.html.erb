@@ -1,12 +1,23 @@
 <div class="wrapper">
   <div class="container">
     <div class="row">
-      <div class="col-md-offset-2 col-md-6 user-show">
-        <h1>
-          <%= @user.name %>
-        </h1>
-
+      <div class="col-md-10 user-show">
+        <h1 class="text-conteiner text-white"><%= @user.name %></h1>
       </div>
     </div>
+    <div class="container">
+      <h1>最近の投稿</h1>
+      <% @microposts.order('created_at DESC').first(5).each do |micropost| %>
+        <div class="row">
+          <div class="col-md-offset-2 col-md-6 micropost-conteiner">
+            <h2 class = "micropost-user-name">
+              <%= micropost.user.name %>
+            </h2>
+            <p class = "micropost-content" >
+              <%= micropost.content %>
+            </p>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>

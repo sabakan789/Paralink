@@ -88,3 +88,18 @@ body {
 .micropost-index-wrapper {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+.micropost-conteiner {
+  border: 2px solid #fff;
+  margin-top: 20px;
+}
+
+.micropost-user-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.micropost-content {
+  padding: 20px;
+  width: 80%;
+}

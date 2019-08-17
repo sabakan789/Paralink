@@ -12,5 +12,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  mount_uploader :image, ImageUploader
+
   has_many :microposts, dependent: :destroy
 end

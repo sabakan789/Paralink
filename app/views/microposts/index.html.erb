@@ -16,7 +16,7 @@
             <%= micropost.user.name %>
           </h2>
           <p class = "micropost-content" >
-            <%= micropost.content %>
+            <%= link_to micropost.content, "/microposts/#{micropost.id}",:style=>"color:white;"%>
           </p>
         </div>
       </div>

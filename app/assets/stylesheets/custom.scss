@@ -92,7 +92,6 @@ body {
 }
 
 .micropost-user-name {
-  width: 15px;
   font-size: 20px;
   font-weight: bold;
 }
@@ -100,6 +99,10 @@ body {
 .micropost-content {
   padding: 20px;
   width: 80%;
+}
+
+.micropost-show {
+  margin-top: 100px;
 }
 
 .index-user-name {

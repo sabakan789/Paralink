@@ -2,7 +2,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 user-show">
-        <h1 class="text-conteiner text-white"><%= @user.name %></h1>
+        <h1 class="text-conteiner text-white col-md-3">
+          <%= @user.name %>
+        </h1>
+        <div class="text-white col-md-3">
+          <%= link_to '編集する', edit_user_path(id: current_user.id), class: 'btn btn-white' %>
+        </div>
       </div>
     </div>
     <div class="container">

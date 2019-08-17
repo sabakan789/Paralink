@@ -1,14 +1,23 @@
-<div class="micropost-index-wrapper">
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 user-show">
+        <h1 class="text-conteiner text-white col-md-3">
+          投稿一覧
+        </h1>
+      </div>
+    </div>
+  </div>
   <div class="container">
     <% @microposts.each do |micropost| %>
       <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <div class="micropost-index-single">
-            <h2 class="micropost-author">
-              <%= micropost.user.name %>
-            </h2>
+        <div class="col-md-offset-2 col-md-6 micropost-conteiner">
+          <h2 class = "micropost-user-name">
+            <%= micropost.user.name %>
+          </h2>
+          <p class = "micropost-content" >
             <%= micropost.content %>
-          </div>
+          </p>
         </div>
       </div>
     <% end %>

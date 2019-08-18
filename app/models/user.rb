@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   has_secure_password
 
-  mount_uploader :image, ImageUploader
-
   has_many :microposts, dependent: :destroy
+  has_many :favorites
+  has_many :favorite_micropsts, through: :favorites, source: 'micropst'
 end

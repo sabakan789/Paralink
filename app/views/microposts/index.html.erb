@@ -18,6 +18,16 @@
           <p class = "micropost-content" >
             <%= link_to micropost.content, "/microposts/#{micropost.id}",:style=>"color:white;"%>
           </p>
+          <% if !micropost.favorite_users.include?(current_user) %>
+          <%= link_to favorites_path(micropost_id: micropost.id), method: :post do %>
+            <%= image_tag 'heart.png', class: 'topic-index-icon' %>
+          <% end %>
+        <% else %>
+          <%= link_to favorites_path(micropost_id: micropost.id), method: :delete do %>
+            <i class="fa fa-heart" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+        <%= micropost.favorite_users.count %>
         </div>
       </div>
     <% end %>

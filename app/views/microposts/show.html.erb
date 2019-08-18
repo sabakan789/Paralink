@@ -8,6 +8,7 @@
         <p class = "micropost-content" >
           <%= @micropost.content %>
         </p>
+        <%= link_to "削除", micropost_path(@micropost.id) , method: :delete, data: {confirm: "本当に削除しますか？" }%>
       </div>
     </div>
   </div>

@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :microposts, dependent: :destroy
+  has_many :comments
   has_many :favorites
   has_many :favorite_micropsts, through: :favorites, source: 'micropst'
   has_many :active_relationships,
@@ -29,7 +30,7 @@ class User < ApplicationRecord
   has_many :followers,
             through: :passive_relationships,
             source: :following
-            
+
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end

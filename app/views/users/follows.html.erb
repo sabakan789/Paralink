@@ -1,20 +1,27 @@
-
-
-
-
-
-
-
-
-
-<h1>フォロー一覧</h1>
-<% @users.each do |user| %>
-  <% if current_user != user %>
-    <p><%= link_to user.name, user_path(user.id) %></p>
-    <% if user.followed_by?(current_user) %>
-      <p><%=link_to "フォロー済み", user_relationships_path(user.id), method: :delete %></p>
-    <% else %>
-      <p><%=link_to "フォローする", user_relationships_path(user.id), method: :post %></p>
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-8 users-container">
+        <h1 class="text-conteiner text-white">フォロー一覧</h1>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <% @users.order('created_at DESC').each do |user| %>
+      <div class="row">
+        <% if current_user != user %>
+          <div class="col-md-offset-2 col-md-6 micropost-conteiner">
+            <div class="micropost-user-name index-user-name">
+              <%= link_to user.name, user_path(user.id) , class: 'col-md-3', :style=>"color:white;" %>
+              <% if user.followed_by?(current_user) %>
+                <%=link_to "フォロー済み", user_relationships_path(user.id), method: :delete, class: 'col-md-offset-5 col-md-4',:style=>"color:white;"%>
+              <% else %>
+                <%=link_to "フォローする", user_relationships_path(user.id), method: :post, class: 'col-md-offset-5 col-md-4',:style=>"color:white;" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
-  <% end %>
-<% end %>
+  </div>
+</div>

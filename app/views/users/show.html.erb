@@ -2,12 +2,13 @@
   <div class="container">
     <div class="row">
       <div class="col-md-10 user-show">
-        <h1 class="text-conteiner text-white col-md-3">
+        <h1 class="text-conteiner text-white col-md-3 ">
           <%= @user.name %>
         </h1>
-        <div class="text-white col-md-3">
-          <%= link_to '編集する', edit_user_path, class: 'btn btn-white' %>
-        </div>
+
+            <%=link_to "フォロー一覧", follows_user_path(@user.id), class: 'btn btn-white col-md-2' %>
+            <%=link_to "フォロワー一覧", followers_user_path(@user.id), class: 'btn btn-white col-md-2' %>
+            <%= link_to '編集する', edit_user_path, class: 'btn btn-white col-md-2' %>
       </div>
     </div>
     <div class="container">

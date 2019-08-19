@@ -16,15 +16,35 @@ body {
 .btn-white {
   color: #fff;
   border: 2px solid #fff;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  margin: 10px 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin: 10px;
   font-size: 20px;
   background-color: rgba(0, 0, 0, 0.3);
 
   &:hover {
     color: #fff;
     box-shadow: 0 0 15px 5px #0ff;
+  }
+}
+
+.btn-following {
+  color: #fff;
+  border: 1px solid #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  &:hover {
+    color: #000;
+    background-color: #FF9;
+  }
+}
+
+.btn-follow {
+  color: #fff;
+  border: 1px solid #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  &:hover {
+    color: #000;
+    background-color: #9FF;
   }
 }
 
@@ -109,14 +129,16 @@ body {
   padding: 20ox 0;
 }
 
-
-.topic-index-icon {
-  width: 35px;
-  height: 30px;
-  margin-left: 20px;
+.far {
+  color: #fff;
 }
-.fa-heart {
-  margin-left: 20px;
-  font-size: 2em;
+
+.fa {
   color :#f00;
+}
+
+.fa-heart {
+  font-size: 2em;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

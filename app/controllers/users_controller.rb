@@ -28,18 +28,28 @@ class UsersController < ApplicationController
   end
 
   def update
-  @user = User.find(params[:id])
-   if current_user == @user
-    if @user.update(user_params)
-      redirect_to @user, success: 'ユーザー情報を編集しました'
+    @user = User.find(params[:id])
+    if current_user == @user
+      if @user.update(user_params)
+        redirect_to @user, success: 'ユーザー情報を編集しました'
+      else
+        flash.now[:danger] = 'ユーザー情報の編集に失敗しました'
+        render :edit
+      end
     else
-      flash.now[:danger] = 'ユーザー情報の編集に失敗しました'
-      render :edit
-    end
-  else
       redirect_to root_url
+    end
   end
-end
+
+  def follows
+    user = User.find(params[:id])
+    @users = user.followings
+  end
+
+  def followers
+    user = User.find(params[:id])
+    @users = user.followers
+  end
 
   private
   def user_params

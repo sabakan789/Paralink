@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :microposts, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :favorites
   has_many :favorite_micropsts, through: :favorites, source: 'micropst'
   has_many :active_relationships,

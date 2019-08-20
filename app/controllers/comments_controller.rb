@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
   def new
-    @micropost = Micropost.new
     @comment = Comment.new
   end
 
@@ -13,6 +12,13 @@ class CommentsController < ApplicationController
       flash.now[:danger] = 'コメントに失敗しました'
       render :new
     end
+  end
+
+  def destroy
+    @micropost = Micropost.find(params[:micropost_id])
+    @comment = @micropost.comments.find(params[:comment_id])
+    @comment.destroy
+    redirect_to micropost_path(@comment.micropost.id), info: 'コメントを削除しました'
   end
 
   private

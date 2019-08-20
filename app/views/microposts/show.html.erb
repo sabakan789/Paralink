@@ -8,6 +8,7 @@
         <p class = "micropost-content" >
           <%= @micropost.content %>
         </p>
+        <%= link_to "投稿を削除", micropost_path(@micropost.id) , method: :delete, data: {confirm: "本当に削除しますか？" }%>
         <h3>コメント一覧</h3>
         <p><%=link_to "コメントする", comments_path(micropost_id: @micropost.id) %></p>
           <% @micropost.comments.each do |comment| %>
@@ -17,8 +18,10 @@
         <p class="topic-text">
           <%= comment.comment %>
         </p>
+        <p>
+          <%= link_to "コメントを削除", comments_destroy_path(micropost_id: @micropost.id, comment_id: comment.id), method: :delete, data: {confirm: "本当に削除しますか？" }%>
+        </p>
           <% end %>
-        <%= link_to "投稿を削除", micropost_path(@micropost.id) , method: :delete, data: {confirm: "本当に削除しますか？" }%>
       </div>
     </div>
   </div>

@@ -21,5 +21,6 @@ Rails.application.routes.draw do
 
   get 'comments/:micropost_id/new', to: 'comments#new', as: 'comments'
   post 'comments/:micropost_id/create', to: 'comments#create', as:'comments_create'
+  delete 'comments/:micropost_id/destroy', to: 'comments#destroy', as:'comments_destroy'
 
 end

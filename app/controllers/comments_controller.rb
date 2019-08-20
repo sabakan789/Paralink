@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new(comment_params)
 
     if @comment.save
-      redirect_to microposts_path, success: 'コメントに成功しました'
+      redirect_to micropost_path(@comment.micropost.id), success: 'コメントに成功しました'
     else
       flash.now[:danger] = 'コメントに失敗しました'
       render :new

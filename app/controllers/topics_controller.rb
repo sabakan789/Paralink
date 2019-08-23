@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
     @micropost = Micropost.find_by(id: params[:micropost_id])
 
     if @topic.save
-      redirect_to micropost_path(@micropost), success: '投稿に成功しました'
+      redirect_to micropost_path(@micropost), success: '画像を追加しました'
     else
       flash.now[:danger] = "投稿に失敗しました"
       render :new
@@ -17,8 +17,9 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic = Topic.find(params[:id])
+    @micropost = Micropost.find_by(id: params[:micropost_id])
     @topic.destroy
-    redirect_to root_path, info: '投稿を削除しました'
+    redirect_to micropost_path(@micropost), success: '画像を削除しました'
   end
 
   private

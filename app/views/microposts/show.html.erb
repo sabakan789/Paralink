@@ -1,34 +1,42 @@
 <div class="wrapper">
   <div class="container">
     <div class="row">
-      <div class="col-md-offset-2 col-md-6 micropost-conteiner micropost-show">
-        <h2 class = "micropost-user-name">
+      <div class="col-md-offset-2 col-md-8 micropost-conteiner micropost-show">
+        <h2 class="micropost-user-name">
           <%= @micropost.user.name %>
         </h2>
-        <p class = "micropost-content" >
+        <p class="micropost-content">
           <%= @micropost.content %>
         </p>
-        <% if @micropost.topics.count > 0 %>
-        <% @micropost.topics.each do |topic| %>
-        <%= image_tag topic.image.url , alt:'topic.description' %>
-        <% end %>
-        <% end %>
-        <%= link_to "投稿を削除", micropost_path(@micropost.id) , method: :delete, data: {confirm: "本当に削除しますか？" }%>
-        <%= link_to "画像を追加する", new_micropost_topic_path(micropost_id: @micropost.id) %>
-        <h3>コメント一覧</h3>
-        <p><%=link_to "コメントする", comments_path(micropost_id: @micropost.id) %></p>
-          <% @micropost.comments.each do |comment| %>
-          <p>
-            <%= comment.user.name %>
-          </p>
-        <p class="topic-text">
-          <%= comment.comment %>
-        </p>
-        <p>
-          <%= link_to "コメントを削除", comments_destroy_path(micropost_id: @micropost.id, comment_id: comment.id), method: :delete, data: {confirm: "本当に削除しますか？" }%>
-        </p>
+        <% if @micropost.topics.count == 4 %>
+          <% @micropost.topics.each do |topic| %>
+            <%= image_tag topic.image.url , alt:'topic.description',class: "img-responsive center-block"%>
+            <%= link_to "画像を削除", micropost_topic_path(@micropost.id, topic.id) , method: :delete, data: {confirm: "本当に削除しますか？" }%>
           <% end %>
+          <% elsif @micropost.topics.count <= 3 && @micropost.topics.count > 0 %>
+            <% @micropost.topics.each do |topic| %>
+              <%= image_tag topic.image.url , alt:'topic.description',class: "img-responsive center-block" %>
+              <%= link_to "画像を削除", micropost_topic_path(@micropost.id, topic.id) , method: :delete, data: {confirm: "本当に削除しますか？" }%>
+            <% end %>
+            <%= link_to "画像を追加する", new_micropost_topic_path(micropost_id: @micropost.id) %>
+          <% else %>
+            <%= link_to "画像を追加する", new_micropost_topic_path(micropost_id: @micropost.id) %>
+          <% end %>
+          <%= link_to "投稿を削除", micropost_path(@micropost.id) , method: :delete, data: {confirm: "本当に削除しますか？" }%>
+          <h3>コメント一覧</h3>
+          <%=link_to "コメントする", comments_path(micropost_id: @micropost.id) %>
+          <% @micropost.comments.each do |comment| %>
+            <p>
+              <%= comment.user.name %>
+            </p>
+            <p class="topic-text">
+              <%= comment.comment %>
+            </p>
+            <p>
+              <%= link_to "コメントを削除", comments_destroy_path(micropost_id: @micropost.id, comment_id: comment.id), method: :delete, data: {confirm: "本当に削除しますか？" }%>
+            </p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>

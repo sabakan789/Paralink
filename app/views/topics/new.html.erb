@@ -1,0 +1,16 @@
+<div class="wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-2 col-md-6 micropost-conteiner micropost-show">
+        <%= form_for @topic,url:micropost_topics_path do |f| %>
+          <%= f.label :image %>
+          <%= f.file_field :image %>
+          <%= f.label :description,"画像の説明" %>
+          <%= f.text_area :description, class: 'form-control' %>
+          <%= f.hidden_field :micropost_id, :value => params[:micropost_id] %>
+          <%= f.submit '投稿する'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

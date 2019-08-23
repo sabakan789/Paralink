@@ -8,8 +8,8 @@
           <%= f.label :comment, 'コメント' %>
           <%= f.text_area :comment, class: 'form-control' %>
           <%= f.hidden_field :micropost_id, :value => params[:micropost_id] %>
+          <%= f.submit 'コメントする', class: 'btn btn-black btn-block' %>
         </div>
-        <%= f.submit 'コメントする', class: 'btn btn-black btn-block' %>
         <% end %>
       </div>
     </div>

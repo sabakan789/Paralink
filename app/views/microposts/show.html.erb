@@ -8,7 +8,11 @@
         <p class = "micropost-content" >
           <%= @micropost.content %>
         </p>
+        <% @micropost.topics.each do |topic| %>
+        <%# <%= image_tag 'topic.image', alt:'topic.description' %> %>
+        <% end %>
         <%= link_to "投稿を削除", micropost_path(@micropost.id) , method: :delete, data: {confirm: "本当に削除しますか？" }%>
+        <%= link_to "画像を追加する", new_micropost_topic_path(micropost_id: @micropost.id) %>
         <h3>コメント一覧</h3>
         <p><%=link_to "コメントする", comments_path(micropost_id: @micropost.id) %></p>
           <% @micropost.comments.each do |comment| %>

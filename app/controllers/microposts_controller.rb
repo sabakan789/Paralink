@@ -8,7 +8,7 @@ class MicropostsController < ApplicationController
   end
 
   def show
-    @micropost = Micropost.find_by(id:params[:id])
+    @micropost = Micropost.find_by(id: params[:id])
   end
 
   def create
@@ -17,7 +17,7 @@ class MicropostsController < ApplicationController
       redirect_to root_path, success: '投稿しました'
     else
       flash.now[:danger] = '投稿に失敗しました'
-      render :new
+      redirect_to :back
     end
   end
 

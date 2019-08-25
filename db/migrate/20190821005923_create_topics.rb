@@ -1,9 +1,9 @@
 class CreateTopics < ActiveRecord::Migration[5.1]
   def change
     create_table :topics do |t|
-      t.integer :micropost_id
-      t.string :description
-      t.string :image
+      t.references :micropost, foreign_key: true, null: false, default:0
+      t.string :description, null: false, default: ""
+      t.string :image, null: false, default: ""
 
       t.timestamps
     end

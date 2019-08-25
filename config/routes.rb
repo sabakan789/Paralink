@@ -5,12 +5,13 @@ Rails.application.routes.draw do
     resources :topics
   end
 
-
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
   resources :users do
+    resource :profiles
+
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
     get :followers, on: :member

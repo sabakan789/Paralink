@@ -10,56 +10,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190821005923) do
+ActiveRecord::Schema.define(version: 20190825023500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "micropost_id"
-    t.string "comment"
+    t.bigint "user_id", default: 0, null: false
+    t.bigint "micropost_id", default: 0, null: false
+    t.string "comment", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["micropost_id"], name: "index_comments_on_micropost_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "micropost_id"
+    t.bigint "user_id", default: 0, null: false
+    t.bigint "micropost_id", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["micropost_id"], name: "index_favorites_on_micropost_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "microposts", force: :cascade do |t|
-    t.text "content"
-    t.bigint "user_id"
+    t.text "content", default: "", null: false
+    t.bigint "user_id", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id", default: 0, null: false
+    t.text "introduction", default: "", null: false
+    t.string "user_image", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "relationships", force: :cascade do |t|
-    t.integer "following_id"
-    t.integer "follower_id"
+    t.integer "following_id", default: 0, null: false
+    t.integer "follower_id", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "topics", force: :cascade do |t|
-    t.integer "micropost_id"
-    t.string "description"
-    t.string "image"
+    t.bigint "micropost_id", default: 0, null: false
+    t.string "description", default: "", null: false
+    t.string "image", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["micropost_id"], name: "index_topics_on_micropost_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "password_digest"
+    t.string "name", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "password_digest", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comments", "microposts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "favorites", "microposts"
+  add_foreign_key "favorites", "users"
   add_foreign_key "microposts", "users"
+  add_foreign_key "profiles", "users"
+  add_foreign_key "topics", "microposts"
 end

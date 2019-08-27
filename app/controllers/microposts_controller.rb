@@ -27,7 +27,6 @@ class MicropostsController < ApplicationController
     redirect_to root_path, info: '投稿を削除しました'
   end
 
-
   private
   def micropost_params
     params.require(:micropost).permit(:content)

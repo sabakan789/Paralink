@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  has_one :profile
+
   has_many :microposts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites

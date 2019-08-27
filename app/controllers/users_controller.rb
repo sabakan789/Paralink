@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts
+    @profile = @user.profile
   end
 
   def create
@@ -31,10 +32,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if current_user == @user
       if @user.update(user_params)
-        redirect_to @user, success: 'ユーザー情報を編集しました'
+        redirect_to @user, success: '登録情報を編集しました'
       else
-        flash.now[:danger] = 'ユーザー情報の編集に失敗しました'
-        render :edit
+        flash.now[:danger] = '編集に失敗しました'
+        render :edit and return
       end
     else
       redirect_to root_url
@@ -50,6 +51,12 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     @users = user.followers
   end
+
+  def destroy
+    User.find_by(user_id: current_user.id).destroy
+    redirect_to root_path, success: '退会しました'
+  end
+
 
   private
   def user_params

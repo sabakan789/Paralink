@@ -1,29 +1,28 @@
 <div class="wrapper">
   <div class="container">
     <div class="row">
+      <%= form_for @user do |f| %>
       <div class="col-md-offset-4 col-md-4 users-container">
-        <h1 class="text-conteiner text-white">登録情報編集ページ</h1>
-        <%= form_for @user do |f| %>
-          <div class="form-group">
-            <%= f.label :name, '名前' , class: 'text-white' %>
-            <%= f.text_field :name, class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :email, 'メールアドレス' , class: 'text-white' %>
-            <%= f.text_field :email, class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :password, 'パスワード' , class: 'text-white' %>
-            <%= f.password_field :password, class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= f.label :password_confirmation, 'パスワード（確認）' , class: 'text-white' %>
-            <%= f.password_field :password_confirmation, class: 'form-control' %>
-          </div>
-          <%= f.submit "変更を保存", class: 'btn-block btn-white' %>
-        <% end %>
-        <%= link_to 'マイページへ', user_path, class: 'btn user-new' %>
+        <h1 class="text-conteiner text-white">登録情報を編集</h1>
+        <div class="form-group">
+          <%= f.label :name, '名前' , class: 'text-white' %>
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :email, 'メールアドレス' , class: 'text-white' %>
+          <%= f.text_field :email, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password, 'パスワード' , class: 'text-white' %>
+          <%= f.password_field :password, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, 'パスワード（確認）' , class: 'text-white' %>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        </div>
       </div>
+      <%= f.submit "変更を保存", class: 'btn-block btn-white' %>
+      <% end %>
     </div>
   </div>
 </div>

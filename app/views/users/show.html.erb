@@ -1,15 +1,58 @@
 <div class="wrapper">
   <div class="container">
     <div class="row">
-      <div class="col-md-10 user-show">
+      <div class="col-md-12 user-show">
         <h1 class="text-conteiner text-white col-md-3 ">
           <%= @user.name %>
         </h1>
         <%=link_to "フォロー一覧", follows_user_path(@user.id), class: 'btn btn-white col-md-2' %>
         <%=link_to "フォロワー一覧", followers_user_path(@user.id), class: 'btn btn-white col-md-2' %>
-        <%= link_to '編集する', edit_user_path, class: 'btn btn-white col-md-2' %>
+        <%= link_to '登録情報の変更', edit_user_path, class: 'btn btn-white col-md-2' %>
+        <%= link_to '退会する', user_path, method: :delete, class: 'btn btn-white col-md-2', data: {confirm: "全てのデータが削除されてしましますが、本当に退会しますか？" }%>
       </div>
     </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 user-show">
+          <h2>プロフィール</h2>
+          <% if @user.profile.userimage.nil? %>
+            <div class="user-profile col-md-4">
+              <%= image_tag "figure_standing.png", :size => "200x200", alt:'デフォルトの画像です',class: "img-responsive center-block" %>
+
+            </div>
+          <% else %>
+            <div class="user-profile col-md-4">
+              <%= image_tag @user.profile.userimage, alt:'#{@user.name}のプロフィール画像です', :size => "200x200",class: "img-responsive center-block"%>
+
+            </div>
+          <% end%>
+          <% if @user.profile.profile.nil? %>
+            <div class="col-md-offset-1 user-profile col-md-6">
+              <div class="line01 bgred">
+                <p></p>
+              </div>
+            </div>
+          <% else %>
+            <div class="col-md-offset-1 user-profile col-md-6">
+              <div class="line01 bgred">
+                <p><%= @user.profile.profile %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <% if @user.profile.userimage.nil? || if @user.profile.profile.nil? %>
+        <%=link_to "プロフィールを作成する", new_user_profiles_path(@user) %>
+    <% else %>
+    <%=link_to "プロフィールを編集する", edit_user_profiles_path(@user) %>
+<% end %>
+
+<% end %>
+
+
     <div class="container">
       <h1>最近の投稿</h1>
       <% @microposts.order('created_at DESC').first(5).each do |micropost| %>

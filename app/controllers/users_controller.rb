@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
+  before_action :user_search
   def new
     @user = User.new
+  end
+
+  def user_search
+    @search_u = User.ransack(params[:q])
+    @search_users = @search_u.result
   end
 
   def index
@@ -53,10 +59,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find_by(user_id: current_user.id).destroy
+    User.find_by(id: current_user.id).destroy
     redirect_to root_path, success: '退会しました'
   end
-
 
   private
   def user_params

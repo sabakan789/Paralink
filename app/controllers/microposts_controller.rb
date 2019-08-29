@@ -27,6 +27,11 @@ class MicropostsController < ApplicationController
     redirect_to root_path, info: '投稿を削除しました'
   end
 
+  def search
+    @search_m = Micropost.ransack(params[:q])
+    @search_microposts = @search_m.result
+  end
+
   private
   def micropost_params
     params.require(:micropost).permit(:content)

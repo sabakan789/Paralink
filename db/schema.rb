@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20190827040755) do
     t.bigint "user_id", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["content"], name: "index_microposts_on_content"
     t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
@@ -73,6 +74,7 @@ ActiveRecord::Schema.define(version: 20190827040755) do
     t.string "password_digest", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_users_on_name"
   end
 
   add_foreign_key "comments", "microposts"

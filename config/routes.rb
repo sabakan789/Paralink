@@ -9,8 +9,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-
-
   resources :users do
     resource :profiles
 
@@ -18,6 +16,9 @@ Rails.application.routes.draw do
     get :follows, on: :member
     get :followers, on: :member
   end
+
+  get 'user/search' => 'users#search'
+  get 'micropost/search' => 'microposts#search'
 
   get 'relationships/create'
   get 'relationships/destroy'

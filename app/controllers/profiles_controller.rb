@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
 
     if @profile.save
-      redirect_to user_path(@user), success: 'プロフィールを作成しました'
+      redirect_to user_path(@profile), success: 'プロフィールを作成しました'
     else
       flash.now[:danger] = "プロフィールの作成に失敗しました"
       render :new

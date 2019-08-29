@@ -1,0 +1,56 @@
+<%= search_form_for @search_m, url:micropost_search_path do |f| %>
+<div class="form-group">
+  <%= f.label :content_cont, "ユーザーネーム" %>
+  <%= f.search_field :content_cont, class: "form-control" %>
+</div>
+<div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
+
+<div class="container">
+  <% if @search_microposts.any? %>
+  <% @search_microposts.order('created_at DESC').each do |micropost| %>
+    <div class="row">
+      <div class=" micropost-conteiner col-md-offset-2 col-md-8">
+        <h2 class="micropost-user-name">
+          <%= micropost.user.name %>
+        </h2>
+        <span class="micropost-content col-md-8">
+          <%= link_to micropost.content, "/microposts/#{micropost.id}",:style=>"color:white;" %>
+        </span>
+        <div class="row">
+          <% micropost.topics.each do |topic| %>
+            <div class="col-md-3 index-image">
+              <%= image_tag topic.image.url , alt:'topic.description',class: "img-responsive center-block"%>
+            </div>
+          <% end %>
+        </div>
+        <span class="col-md-3">
+          <% if !micropost.favorite_users.include?(current_user) %>
+            <%= link_to favorites_path(micropost_id: micropost.id), method: :post do %>
+            <i class="far fa-heart" aria-hidden="true"></i>
+          <% end %>
+        <% else %>
+          <%= link_to favorites_path(micropost_id: micropost.id), method: :delete do %>
+          <i class="fa fa-heart" aria-hidden="true"></i>
+        <% end %>
+      <% end %>
+      <%= micropost.favorite_users.count %>
+    </span>
+    <span class="col-md-3">
+      <% if current_user != micropost.user %>
+        <% if micropost.user.followed_by?(current_user) %>
+          <%=link_to "フォロー済み", user_relationships_path(micropost.user.id), method: :delete , class: 'btn btn-following'%>
+        <% else %>
+          <%=link_to "フォローする", user_relationships_path(micropost.user.id), method: :post , class: 'btn btn-follow'%>
+        <% end %>
+      <% end %>
+    </span>
+    <span class="col-md-3">
+      <p>コメント数：<%= micropost.comments.count %></p>
+    </span>
+  </div>
+</div>
+<% end %>
+<% end %>
+</div>

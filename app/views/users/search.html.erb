@@ -1,0 +1,13 @@
+<%= search_form_for @search_u, url:user_search_path do |f| %>
+<div class="form-group">
+  <%= f.label :name_cont, "ユーザーネーム" %>
+  <%= f.search_field :name_cont, class: "form-control" %>
+</div>
+<div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
+<% if @search_users.any? %>
+<% @search_users.each do |result| %>
+<%= link_to result.name, "/users/#{result.id}" %>
+<% end %>
+<% end %>

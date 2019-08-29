@@ -16,15 +16,26 @@
       <div class="row">
         <div class="col-md-12 user-show">
           <h2>プロフィール</h2>
+        <% if @profile.nil? %>
+        <div class="user-profile col-md-4">
+          <%= image_tag "figure_standing.png", :size => "200x200", alt:'デフォルトの画像です',class: "img-responsive center-block" %>
+        </div>
+        <div class="col-md-offset-1 user-profile col-md-6">
+          <div class="line01 bgred">
+            <p></p>
+          </div>
+        </div>
+        <%=link_to "プロフィールを作成する", new_user_profiles_path(@user) %>
+
+
+        <% else %>
           <% if @user.profile.userimage.nil? %>
             <div class="user-profile col-md-4">
               <%= image_tag "figure_standing.png", :size => "200x200", alt:'デフォルトの画像です',class: "img-responsive center-block" %>
-
             </div>
           <% else %>
             <div class="user-profile col-md-4">
               <%= image_tag @user.profile.userimage, alt:'#{@user.name}のプロフィール画像です', :size => "200x200",class: "img-responsive center-block"%>
-
             </div>
           <% end%>
           <% if @user.profile.profile.nil? %>
@@ -44,14 +55,12 @@
       </div>
     </div>
 
-    <% if @user.profile.userimage.nil? || if @user.profile.profile.nil? %>
+    <% if @user.profile.userimage.nil? ||  @user.profile.profile.nil? %>
         <%=link_to "プロフィールを作成する", new_user_profiles_path(@user) %>
     <% else %>
     <%=link_to "プロフィールを編集する", edit_user_profiles_path(@user) %>
 <% end %>
-
 <% end %>
-
 
     <div class="container">
       <h1>最近の投稿</h1>

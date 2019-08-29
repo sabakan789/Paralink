@@ -1,7 +1,7 @@
 class CreateMicroposts < ActiveRecord::Migration[5.1]
   def change
     create_table :microposts do |t|
-      t.text :content, null: false, default: ""
+      t.text :content, null: false, default: "", index: true
       t.references :user, foreign_key: true, null: false, default:0
 
       t.timestamps

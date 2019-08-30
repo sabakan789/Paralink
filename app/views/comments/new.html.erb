@@ -1,15 +1,15 @@
-<div class="wrapper">
-  <div class="container">
+<div class="wrapper add-color">
+  <div class="container default-container">
+    <h1 class="text-white text-center">コメント</h1>
     <div class="row">
-      <div class="col-md-6 col-md-offset-3">
-        <h1 class="text-conter">コメントする</h1>
+      <div class="col-md-offset-3 col-md-6 form-conter text-center">
         <%= form_for @comment,url: comments_create_path do |f| %>
         <div class="form-group">
-          <%= f.label :comment, 'コメント' %>
+          <%= f.label :comment, 'コメント内容' %>
           <%= f.text_area :comment, class: 'form-control' %>
-          <%= f.hidden_field :micropost_id, :value => params[:micropost_id] %>
-          <%= f.submit 'コメントする', class: 'btn btn-black btn-block' %>
         </div>
+        <%= f.hidden_field :micropost_id, :value => params[:micropost_id] %>
+        <%= f.submit 'コメントする', class: 'btn-block btn-white vertical-btn' %>
         <% end %>
       </div>
     </div>

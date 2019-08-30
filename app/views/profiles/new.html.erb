@@ -1,14 +1,19 @@
-<div class="wrapper">
-  <div class="container">
+<div class="wrapper add-color">
+  <div class="container default-container">
+    <h1 class="text-white text-center">プロフィールを作成する</h1>
     <div class="row">
-      <div class="col-md-offset-2 col-md-6 micropost-conteiner micropost-show">
+      <div class="col-md-offset-3 col-md-6 form-conter text-center">
         <%= form_for @profile,url:user_profiles_path do |f| %>
-          <%= f.label :userimage %>
-          <%= f.file_field :userimage %>
-          <%= f.label :profile,"画像の説明" %>
+        <div class="form-group">
+          <%= f.label :userimage, "プロフィール画像" %>
+          <%= f.file_field :userimage, class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <%= f.label :profile,"自己紹介" %>
           <%= f.text_area :profile, class: 'form-control' %>
-          <%= f.hidden_field :user_id, :value => params[:user_id] %>
-          <%= f.submit '投稿する'%>
+        </div>
+        <%= f.hidden_field :user_id, :value => params[:user_id] %>
+        <%= f.submit '作成する', class: 'btn-block btn-white vertical-btn' %>
         <% end %>
       </div>
     </div>

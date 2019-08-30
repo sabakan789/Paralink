@@ -1,8 +1,9 @@
-<div class="wrapper">
-  <div class="container">
+<div class="wrapper add-color">
+  <div class="container default-container">
+    <h1 class="text-white text-center">新規登録</h1>
     <div class="row">
-      <div class="col-md-offset-4 col-md-4 users-container">
-        <h1 class="text-conteiner text-white">新規登録</h1>
+      <div class="col-md-offset-4 col-md-4">
+
         <%= form_for @user do |f| %>
           <div class="form-group">
             <%= f.label :name, '名前' , class: 'text-white' %>
@@ -22,7 +23,7 @@
           </div>
           <%= f.submit "登録", class: 'btn-block btn-white vertical-btn' %>
         <% end %>
-        <%= link_to 'ログインはこちら', login_path , class: 'btn user-new' %>
+        <%= link_to 'ログインはこちら', login_path , class: 'btn to-login' %>
       </div>
     </div>
   </div>

@@ -8,7 +8,6 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
-
   <body>
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
@@ -27,15 +26,13 @@
         </nav>
       </div>
     </header>
-
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>" role="alert"><%= value %></div>
     <% end %>
     <%= yield %>
-
     <script>
       $(function () {
-        $(".alert").fadeOut(5000);
+        $(".alert").fadeOut(4000);
       });
     </script>
   </body>

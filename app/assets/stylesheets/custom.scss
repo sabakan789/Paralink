@@ -10,6 +10,20 @@ body {
 .wrapper {
   width: 100vw;
   height: 100vh;
+}
+
+.default-container {
+  padding-top: 70px;
+  h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+  }
+  h2 {
+    margin-bottom: 30px;
+  }
+}
+
+.add-color {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -56,6 +70,7 @@ body {
 }
 
 .alert {
+  margin-top: 50px;
   margin-bottom: 0px;
   position: fixed;
   width: 100%;
@@ -68,7 +83,12 @@ body {
   max-width: 100%;
 }
 
-/* header*/
+.form-group {
+  margin: 30px 0;
+  font-size: 20px;
+}
+
+/* application*/
 .logo {
   float: left;
   margin-right: 10px;
@@ -83,38 +103,17 @@ body {
   }
 }
 
-/*top*/
-.top-hero-container {
-  padding-top: 70px;
-  h1 {
-    font-size: 50px;
-    margin-bottom: 20px;
-  }
-  h2 {
-    margin-bottom: 30px;
-  }
-}
-
-/*sign up*/
-.users-container {
+/*user*/
+.user-show {
   padding-top: 70px;
 }
 
-.form-group {
-  margin: 30px 0;
-}
-
-.user-new {
+.to-login {
   color: #fff;
   &:hover {
     color: #ff0;
     text-decoration: none;
   }
-}
-
-/*user*/
-.user-show {
-  padding-top: 70px;
 }
 
 /*micropost*/

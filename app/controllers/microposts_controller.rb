@@ -14,7 +14,7 @@ class MicropostsController < ApplicationController
   def create
     @micropost = current_user.microposts.new(micropost_params)
     if @micropost.save
-      redirect_to root_path, success: '投稿しました'
+      redirect_to microposts_path, success: '投稿しました'
     else
       flash.now[:danger] = '投稿に失敗しました'
       redirect_to :back
@@ -24,7 +24,7 @@ class MicropostsController < ApplicationController
   def destroy
     @micropost = Micropost.find(params[:id])
     @micropost.destroy
-    redirect_to root_path, info: '投稿を削除しました'
+    redirect_to microposts_path, info: '投稿を削除しました'
   end
 
   def search

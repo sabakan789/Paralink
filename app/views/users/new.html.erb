@@ -3,7 +3,6 @@
     <h1 class="text-white text-center">新規登録</h1>
     <div class="row">
       <div class="col-md-offset-4 col-md-4">
-
         <%= form_for @user do |f| %>
           <div class="form-group">
             <%= f.label :name, '名前' , class: 'text-white' %>
@@ -21,7 +20,7 @@
             <%= f.label :password_confirmation, 'パスワード（確認）' , class: 'text-white' %>
             <%= f.password_field :password_confirmation, class: 'form-control' %>
           </div>
-          <%= f.submit "登録", class: 'btn-block btn-white vertical-btn' %>
+            <%= f.submit "登録", class: 'btn-block btn-white vertical-btn' %>
         <% end %>
         <%= link_to 'ログインはこちら', login_path , class: 'btn to-login' %>
       </div>

@@ -27,6 +27,43 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+.alert {
+  margin-top: 50px;
+  margin-bottom: 0px;
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
+}
+
+.img-responsive {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+.form-conter {
+  border: 2px solid #0FF;
+  padding: 10px;
+}
+
+.form-group {
+  margin: 30px 0;
+  font-size: 20px;
+}
+
+.text-brack {
+  color: #000;
+}
+
+/* btn*/
+.vertical-btn {
+  margin: 15px 0;
+}
+
+.side-btn {
+  margin: 0 10px;
+}
+
 .btn-white {
   color: #fff;
   border: 2px solid #fff;
@@ -34,19 +71,10 @@ body {
   padding-bottom: 10px;
   font-size: 20px;
   background-color: rgba(0, 0, 0, 0.3);
-
   &:hover {
     color: #fff;
     box-shadow: 0 0 15px 5px #0ff;
   }
-}
-
-.vertical-btn {
-  margin: 15px 0;
-}
-
-.side-btn {
-  margin: 0 10px;
 }
 
 .btn-following {
@@ -69,24 +97,6 @@ body {
   }
 }
 
-.alert {
-  margin-top: 50px;
-  margin-bottom: 0px;
-  position: fixed;
-  width: 100%;
-  z-index: 10000;
-}
-
-.img-responsive {
-  display: block;
-  height: auto;
-  max-width: 100%;
-}
-
-.form-group {
-  margin: 30px 0;
-  font-size: 20px;
-}
 
 /* application*/
 .logo {
@@ -103,17 +113,18 @@ body {
   }
 }
 
-/*user*/
-.user-show {
-  padding-top: 70px;
-}
-
+/*session*/
 .to-login {
   color: #fff;
   &:hover {
     color: #ff0;
     text-decoration: none;
   }
+}
+
+/*user*/
+.user-show {
+  padding-top: 70px;
 }
 
 /*micropost*/

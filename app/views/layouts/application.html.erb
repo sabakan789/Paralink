@@ -16,8 +16,9 @@
           <ul class="nav navbar-nav navbar-right ">
             <% if logged_in? %>
               <li><%= link_to "マイページへ", user_path(id: current_user.id)%></li>
+              <li><%= link_to "投稿画面へ", new_micropost_path %></li>
+              <li><%= link_to "投稿を見る", microposts_path %></li>
               <li><%= link_to "ログアウト", logout_path , method: :delete%></li>
-              <li><%= link_to "投稿する", new_micropost_path %></li>
             <% else %>
               <li><%= link_to "新規登録", new_user_path%></li>
               <li><%= link_to "ログイン", login_path%></li>

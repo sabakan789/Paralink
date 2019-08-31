@@ -1,56 +1,77 @@
-<%= search_form_for @search_m, url:micropost_search_path do |f| %>
-<div class="form-group">
-  <%= f.label :content_cont, "ユーザーネーム" %>
-  <%= f.search_field :content_cont, class: "form-control" %>
-</div>
-<div class="actions"><%= f.submit "Search" %></div>
-<% end %>
-
-
-<div class="container">
-  <% if @search_microposts.any? %>
-  <% @search_microposts.order('created_at DESC').each do |micropost| %>
+<div class="wrapper">
+  <div class="container add-color default-container">
+    <h1 class="text-white text-center">検索フォーム</h1>
+    <h2 class="text-white text-center">キーワードを含む投稿を検索できます</h2>
     <div class="row">
-      <div class=" micropost-conteiner col-md-offset-2 col-md-8">
-        <h2 class="micropost-user-name">
-          <%= micropost.user.name %>
-        </h2>
-        <span class="micropost-content col-md-8">
-          <%= link_to micropost.content, "/microposts/#{micropost.id}",:style=>"color:white;" %>
-        </span>
-        <div class="row">
-          <% micropost.topics.each do |topic| %>
-            <div class="col-md-3 index-image">
-              <%= image_tag topic.image.url , alt:'topic.description',class: "img-responsive center-block"%>
+      <div class="col-md-offset-3 col-md-6 form-conter add-color">
+        <%= search_form_for @search_m, url:micropost_search_path do |f| %>
+          <div class="form-group">
+            <%= f.label :content_cont, "キーワード" %>
+            <%= f.search_field :content_cont, class: "form-control" %>
+          </div>
+        <%= f.submit "検索",class: 'btn-block btn-white ' %>
+        <% end %>
+      </div>
+    </div>
+    <% if @search_microposts.any? %>
+      <% @search_microposts.order('created_at DESC').each do |micropost| %>
+        <div class="container">
+          <div class="row">
+            <div class="micropost-conteiner add-color col-md-offset-2 col-md-8">
+              <h2 class="micropost-user-name">
+                <%= link_to micropost.user.name ,user_path(micropost.user), :style=>"color:white;"%>
+              </h2>
+              <%= link_to micropost_path(micropost), :style=>"color:white;" do %>
+                <div class="micropost-content col-md-8">
+                  <%= micropost.content %>
+                </div>
+              <% end %>
+              <div class="row">
+                <% micropost.topics.each do |topic| %>
+                  <div class="col-md-3 index-image">
+                    <%= link_to micropost_path(micropost) do %>
+                      <%= image_tag topic.image.url , alt:'topic.description',class: "img-responsive center-block"%>
+                    <% end %>
+                  </div>
+                <% end %>
+              </div>
+              <div class="col-md-3 comment-count">
+                コメント数：<%= micropost.comments.count %>
+              </div>
+              <div class="col-md-3">
+                <% if !micropost.favorite_users.include?(current_user) %>
+                  <%= link_to favorites_path(micropost_id: micropost.id), method: :post do %>
+                    <i class="far fa-heart" aria-hidden="true"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to favorites_path(micropost_id: micropost.id), method: :delete do %>
+                    <i class="fa fa-heart" aria-hidden="true"></i>
+                  <% end %>
+                <% end %>
+              <%= micropost.favorite_users.count %>
+              </div>
+              <div class="col-md-3">
+                <% if current_user != micropost.user %>
+                  <% if micropost.user.followed_by?(current_user) %>
+                    <%=link_to "フォロー済み", user_relationships_path(micropost.user.id), method: :delete , class: 'btn btn-following'%>
+                  <% else %>
+                    <%=link_to "フォローする", user_relationships_path(micropost.user.id), method: :post , class: 'btn btn-follow'%>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
-          <% end %>
+          </div>
         </div>
-        <span class="col-md-3">
-          <% if !micropost.favorite_users.include?(current_user) %>
-            <%= link_to favorites_path(micropost_id: micropost.id), method: :post do %>
-            <i class="far fa-heart" aria-hidden="true"></i>
-          <% end %>
-        <% else %>
-          <%= link_to favorites_path(micropost_id: micropost.id), method: :delete do %>
-          <i class="fa fa-heart" aria-hidden="true"></i>
-        <% end %>
       <% end %>
-      <%= micropost.favorite_users.count %>
-    </span>
-    <span class="col-md-3">
-      <% if current_user != micropost.user %>
-        <% if micropost.user.followed_by?(current_user) %>
-          <%=link_to "フォロー済み", user_relationships_path(micropost.user.id), method: :delete , class: 'btn btn-following'%>
-        <% else %>
-          <%=link_to "フォローする", user_relationships_path(micropost.user.id), method: :post , class: 'btn btn-follow'%>
-        <% end %>
-      <% end %>
-    </span>
-    <span class="col-md-3">
-      <p>コメント数：<%= micropost.comments.count %></p>
-    </span>
+    <% else %>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-offset-3 col-md-6 text-center">
+            <h1>キーワードを含む投稿を検索できませんでした</h1>
+            <h2><%= link_to "みんなの投稿に戻る", microposts_path, :style=>"color:#ff0;" %></h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
-</div>
-<% end %>
-<% end %>
 </div>

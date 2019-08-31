@@ -12,7 +12,6 @@
             data: {confirm: "全てのデータが削除されてしましますが、本当に退会しますか？" }%>
       </div>
     </div>
-
     <div class="container">
       <div class="row">
         <div class="col-md-12 user-show">
@@ -27,8 +26,6 @@
           </div>
         </div>
         <%=link_to "プロフィールを作成する", new_user_profiles_path(@user) %>
-
-
         <% else %>
           <% if @user.profile.userimage.nil? %>
             <div class="user-profile col-md-4">

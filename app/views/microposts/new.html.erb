@@ -1,14 +1,14 @@
-<div class="wrapper" >
-  <div class="container">
+<div class="wrapper add-color">
+  <div class="container default-container">
+    <h1 class="text-white text-center">新しい投稿</h1>
     <div class="row">
-      <div class="col-md-6 col-md-offset-3 users-container">
-        <h1 class="text-center">新しい投稿</h1>
+      <div class="col-md-offset-3 col-md-6 form-conter">
         <%= form_for @micropost do |f| %>
-          <div class="form-group">
-            <%= f.label :content, '投稿内容' , class: 'text-white' %>
-            <%= f.text_area :content, class: 'form-control' %>
-          </div>
-          <%= f.submit '投稿', class: 'btn-block btn-white' %>
+        <div class="form-group">
+          <%= f.label :content, '投稿内容' %>
+          <%= f.text_area :content, class: 'form-control' %>
+        </div>
+        <%= f.submit '投稿する', class: 'btn-block btn-white vertical-btn' %>
         <% end %>
       </div>
     </div>

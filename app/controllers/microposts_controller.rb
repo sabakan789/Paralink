@@ -17,7 +17,7 @@ class MicropostsController < ApplicationController
       redirect_to microposts_path, success: '投稿しました'
     else
       flash.now[:danger] = '投稿に失敗しました'
-      redirect_to :back
+      render :new
     end
   end
 

@@ -7,22 +7,24 @@ class FavoritesController < ApplicationController
     favorite = Favorite.new
     favorite.user_id = current_user.id
     favorite.micropost_id = params[:micropost_id]
-
     if favorite.save
-      redirect_to microposts_path, success: '’いいね’しました'
+      flash[:success] = '’いいね’しました'
+      redirect_back(fallback_location: root_path)
     else
-      redirect_to microposts_path, danger: '’いいね’出来ませんでした'
+      flash[:info] = '’いいね’出来ませんでした'
+      redirect_back(fallback_location: root_path)
     end
   end
 
   def destroy
     favorite = Favorite.find_by(user_id: current_user.id, micropost_id: params[:micropost_id])
     favorite.destroy if favorite.present?
-
     if favorite.destroyed?
-      redirect_to microposts_path, success: '’いいね’を解除しました'
+      flash[:danger] = '’いいね’を解除しました'
+      redirect_back(fallback_location: root_path)
     else
-      redirect_to microposts_path, danger: '’いいね’解除に失敗しました'
+      flash[:info] = '’いいね’解除に失敗しました'
+      redirect_back(fallback_location: root_path)
     end
   end
 end

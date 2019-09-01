@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.new(comment_params)
-
     if @comment.save
       redirect_to micropost_path(@comment.micropost.id), success: 'コメントに成功しました'
     else
@@ -17,8 +16,11 @@ class CommentsController < ApplicationController
   def destroy
     @micropost = Micropost.find(params[:micropost_id])
     @comment = @micropost.comments.find(params[:comment_id])
-    @comment.destroy
-    redirect_to micropost_path(@comment.micropost.id), info: 'コメントを削除しました'
+    if @comment.destroy
+      redirect_to micropost_path(@comment.micropost.id), info: 'コメントを削除しました'
+    else
+      redirect_to micropost_path(@comment.micropost.id), danger: 'コメントの削除に失敗しました'
+    end
   end
 
   private

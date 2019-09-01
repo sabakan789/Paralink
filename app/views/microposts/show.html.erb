@@ -32,7 +32,7 @@
             <h3><%= link_to comment.user.name, user_path(comment.user), :style=>"color:white;" %></h3>
             <p class="comment-text"><%= comment.comment %></p>
             <% if comment.user == current_user %>
-              <%= link_to "コメントを削除", comments_destroy_path(micropost_id: @micropost.id, comment_id: comment.id), method: :delete, data: {confirm: "本当に削除しますか？" }, class: "delete-btn" %>
+              <%= link_to "コメントを削除", comments_destroy_path(micropost_id: @micropost.id, comment_id: comment.id), method: :delete, data: {confirm: "本当に削除しますか？" }, class: "btn delete-btn" %>
             <% end %>
           <% end %>
         <% else %>
@@ -64,7 +64,7 @@
             <h3><%= link_to comment.user.name, user_path(comment.user), :style=>"color:white;" %></h3>
             <p class="comment-text"><%= comment.comment %></p>
             <% if comment.user == current_user %>
-              <%= link_to "コメントを削除", comments_destroy_path(micropost_id: @micropost.id, comment_id: comment.id), method: :delete, data: {confirm: "本当に削除しますか？" }, class: "delete-btn" %>
+              <%= link_to "コメントを削除", comments_destroy_path(micropost_id: @micropost.id, comment_id: comment.id), method: :delete, data: {confirm: "本当に削除しますか？" }, class: "btn delete-btn" %>
             <% end %>
           <% end %>
         <% end %>

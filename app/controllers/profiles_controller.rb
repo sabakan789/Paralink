@@ -5,7 +5,6 @@ class ProfilesController < ApplicationController
 
   def create
     @profile = Profile.new(profile_params)
-
     if @profile.save
       redirect_to user_path(@profile), success: 'プロフィールを作成しました'
     else
@@ -20,7 +19,6 @@ class ProfilesController < ApplicationController
 
   def update
     @profile = Profile.find_by(user_id: params[:user_id])
-
     if @profile.update(profile_params)
       redirect_to user_path(@profile.user.id), success: 'プロフィールを編集しました'
     else

@@ -17,7 +17,7 @@
           <%= link_to 'みんなの投稿', microposts_path, class: 'btn btn-block btn-white vertical-btn' %>
         </div>
         <div class="col-md-offset-4 col-md-4">
-          <%= link_to 'ログアウト', logout_path, method: :delete, class: 'btn btn-block btn-white vertical-btn' %>
+          <%= link_to 'ログアウト', logout_path, method: :delete, class: 'btn btn-block btn-white vertical-btn', data: {confirm: "ログアウトしてよろしいですか？" } %>
         </div>
       <% else %>
         <div class="col-md-offset-4 col-md-4">

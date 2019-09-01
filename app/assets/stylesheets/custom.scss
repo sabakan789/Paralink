@@ -25,6 +25,18 @@ body {
   }
 }
 
+.mypage-container {
+  padding-top: 70px;
+  padding-bottom: 30px;
+  h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  h2 {
+    margin-bottom: 30px;
+  }
+}
+
 .add-color {
   background-color: rgba(0, 0, 0, 0.3);
 }
@@ -57,6 +69,11 @@ body {
   color: #000;
 }
 
+.erb-text {
+  word-break: normal;
+  width: 600px;
+}
+
 /* btn*/
 .vertical-btn {
   margin: 15px 0;
@@ -76,6 +93,34 @@ body {
   &:hover {
     color: #fff;
     box-shadow: 0 0 15px 5px #0ff;
+  }
+}
+
+.user-show-following {
+  color: #fff;
+  border: 2px solid #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 20px;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  &:hover {
+    color: #000;
+    background-color: #FF9;
+  }
+}
+
+.user-show-follow {
+  color: #fff;
+  border: 2px solid #fff;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-right: 20px;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  &:hover {
+    color: #000;
+    background-color: #9FF;
   }
 }
 
@@ -151,9 +196,7 @@ body {
 }
 
 /*user*/
-.user-show {
-  padding-top: 70px;
-}
+
 
 /*micropost*/
 .micropost-conteiner {
@@ -177,10 +220,6 @@ body {
 
 .micropost-show {
   margin-top: 100px;
-}
-
-.index-user-name {
-  padding: 20ox 0;
 }
 
 .img-responsive {
@@ -213,6 +252,7 @@ body {
 .user-profile {
   border: 1px solid #fff;
   background-color: rgba(0, 0, 0, 0.3);
+  padding: 10px;
 }
 
 .bgred {
@@ -223,4 +263,20 @@ body {
 
 .comment-box {
   padding-top: 30px;
+}
+
+.index-image {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.index-user-name {
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.default-image {
+  width: 200px;
+  height: 200px;
 }

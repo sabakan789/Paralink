@@ -5,6 +5,11 @@
         <h2 class="micropost-user-name"><%= link_to @micropost.user.name ,user_path(@micropost.user), :style=>"color:white;"%></h2>
         <p class="micropost-content"><%= @micropost.content %></p>
         <% if @micropost.user == current_user %>
+          <%= link_to micropost_path(micropost_id: @micropost.id), method: :delete, data: {confirm: "この投稿を本当に削除しますか？"},class:'pull-right' do %>
+            <i class="fas fa-trash" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+        <% if @micropost.user == current_user %>
           <% if @micropost.topics.count == 4 %>
             <% @micropost.topics.each do |topic| %>
               <%= image_tag topic.image.url , alt:'topic.description',class: "img-responsive center-block"%>

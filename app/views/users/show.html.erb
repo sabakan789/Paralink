@@ -102,13 +102,19 @@
             <h2 class="micropost-user-name">
               <%= micropost.user.name %>
             </h2>
+            <%= link_to micropost_path(micropost), :style=>"color:white;" do %>
             <div class="micropost-content col-md-8">
+
               <%= micropost.content %>
+
             </div>
+            <% end %>
             <div class="row">
               <% micropost.topics.each do |topic| %>
                 <div class="col-md-3 index-image">
+                    <%= link_to micropost_path(topic.micropost), :style=>"color:white;" do %>
                   <%= image_tag topic.image.url , alt:'topic.description',class: "img-responsive center-block"%>
+                        <% end %>
                 </div>
               <% end %>
             </div>

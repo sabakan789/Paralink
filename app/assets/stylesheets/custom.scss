@@ -240,6 +240,16 @@ body {
   padding-bottom: 10px;
 }
 
+.fa-trash {
+  font-size: 2em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #ff0;
+  &:hover {
+    color: #f00;
+  }
+}
+
 .comment-count {
   padding: 10px 0;
 }

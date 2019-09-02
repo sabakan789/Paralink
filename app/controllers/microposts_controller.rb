@@ -1,10 +1,15 @@
 class MicropostsController < ApplicationController
-  def index
-    @microposts = Micropost.all
-  end
-
   def new
     @micropost = Micropost.new
+  end
+
+  def index
+    @microposts = Micropost.page(params[:page]).per(10)
+  end
+
+  def search
+    @search_m = Micropost.ransack(params[:q])
+    @search_microposts = @search_m.result
   end
 
   def show
@@ -25,11 +30,6 @@ class MicropostsController < ApplicationController
     @micropost = Micropost.find(params[:id])
     @micropost.destroy
     redirect_to microposts_path, info: '投稿を削除しました'
-  end
-
-  def search
-    @search_m = Micropost.ransack(params[:q])
-    @search_microposts = @search_m.result
   end
 
   private

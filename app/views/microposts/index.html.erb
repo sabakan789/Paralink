@@ -50,6 +50,9 @@
           </div>
         </div>
       <% end %>
+      <div class="text-center">
+        <%= paginate @microposts %>
+      </div>
     </div>
   <% else %>
     <div class="container add-color default-container">
@@ -73,6 +76,9 @@
           </div>
         </div>
       <% end %>
+      <div class="text-center">
+        <%= paginate @microposts %>
+      </div>
     </div>
   <% end %>
 </div>

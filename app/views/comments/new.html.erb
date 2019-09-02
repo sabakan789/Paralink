@@ -6,7 +6,7 @@
         <%= form_for @comment,url: comments_create_path do |f| %>
         <div class="form-group">
           <%= f.label :comment, 'コメント内容' %>
-          <%= f.text_area :comment, class: 'form-control' %>
+          <%= f.text_area :comment, placeholder: "最大120文字です", class: 'form-control' %>
         </div>
         <%= f.hidden_field :micropost_id, :value => params[:micropost_id] %>
         <%= f.submit 'コメントする', class: 'btn-block btn-white vertical-btn' %>

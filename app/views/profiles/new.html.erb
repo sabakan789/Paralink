@@ -10,7 +10,7 @@
         </div>
         <div class="form-group">
           <%= f.label :profile,"自己紹介" %>
-          <%= f.text_area :profile, class: 'form-control' %>
+          <%= f.text_area :profile,placeholder: "最大250文字です", class: 'form-control' %>
         </div>
         <%= f.hidden_field :user_id, :value => params[:user_id] %>
         <%= f.submit '作成する', class: 'btn-block btn-white vertical-btn' %>

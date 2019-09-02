@@ -6,7 +6,7 @@
         <%= form_for @micropost do |f| %>
         <div class="form-group">
           <%= f.label :content, '投稿内容' %>
-          <%= f.text_area :content, class: 'form-control' %>
+          <%= f.text_area :content, placeholder: "最大200文字です", class: 'form-control' %>
         </div>
         <%= f.submit '投稿する', class: 'btn-block btn-white vertical-btn' %>
         <% end %>

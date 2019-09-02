@@ -9,7 +9,7 @@
           <%= f.file_field :image, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <%= f.label :description,"目に障害がある人のために、画像の説明をお願いします" , class: 'text-brack bg-warning'%>
+          <%= f.label :description,"目に障害がある人のために、30文字以内で画像の説明をお願いします" , class: 'text-brack bg-warning'%>
           <%= f.text_area :description, placeholder: "例： 海の画像です", class: 'form-control' %>
         </div>
           <%= f.hidden_field :micropost_id, :value => params[:micropost_id] %>

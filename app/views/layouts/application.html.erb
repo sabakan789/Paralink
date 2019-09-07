@@ -2,6 +2,7 @@
 <html lang="ja" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>パラリンク</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,23 +10,28 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse">
-      <div class="container">
-        <%= link_to "パラリンク", root_path, class:"logo"%>
-        <nav>
-          <ul class="nav navbar-nav navbar-right ">
+    <header>
+      <nav class="navbar navbar-fixed-top navbar-inverse">
+        <%= link_to "パラリンク", root_path, class:"logo navbar-nav navbar-left"%>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse navbar-right" id="navbar-menu">
+          <ul class="nav navbar-nav">
             <% if logged_in? %>
-              <li><%= link_to "マイページへ", user_path(id: current_user.id)%></li>
-              <li><%= link_to "投稿画面へ", new_micropost_path %></li>
-              <li><%= link_to "みんなの投稿", microposts_path %></li>
-              <li><%= link_to "ログアウト", logout_path , method: :delete, data: {confirm: "ログアウトしてよろしいですか？" }%></li>
+              <li><%= link_to "マイページへ", user_path(id: current_user.id),class:"nav-item"%></li>
+              <li><%= link_to "投稿画面へ", new_micropost_path ,class:"nav-item"%></li>
+              <li><%= link_to "みんなの投稿", microposts_path,class:"nav-item"%></li>
+              <li><%= link_to "ログアウト", logout_path , method: :delete, data: {confirm: "ログアウトしてよろしいですか？" },class:"nav-item"%></li>
             <% else %>
-              <li><%= link_to "新規登録", new_user_path%></li>
-              <li><%= link_to "ログイン", login_path%></li>
+              <li><%= link_to "新規登録", new_user_path,class:"nav-item"%></li>
+              <li><%= link_to "ログイン", login_path,class:"nav-item"%></li>
             <% end %>
           </ul>
-        </nav>
-      </div>
+        </div>
+      </nav>
     </header>
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key %>" role="alert"><%= value %></div>
@@ -36,5 +42,7 @@
         $(".alert").fadeOut(4000);
       });
     </script>
+    <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

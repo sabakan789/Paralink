@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true,
                     uniqueness: true,
-                    format: {with: /[A-Za-z0-9._+]+@[A-Za-z]+.[A-Za-z]/}
+                    format: {with: /([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+\.([a-zA-Z0-9\._-]+)/ }
 
   PW_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,32}\z/i
   validates :password, presence: true, format: { with: PW_REGEX }

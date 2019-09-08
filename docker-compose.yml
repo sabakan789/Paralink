@@ -4,6 +4,7 @@ services:
     image: postgres
     environment:
       POSTGRES_PASSWORD: example
+    ###  Uncomment to enable DB persistance
     volumes:
       - ./postgres-date:/var/lib/postgresql/date
     tty: true

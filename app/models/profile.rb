@@ -1,7 +1,7 @@
 class Profile < ApplicationRecord
-  validates :user_id, presence: true
   validates :profile, presence: true, length:{maximum: 250}
   validates :userimage, presence: true
+  validates :user_id, presence: true
 
   belongs_to :user
 

@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
 
   describe 'name,email,password,password_confirmation' do
     context '全てに値が入っている場合' do
-      it '通過する' do
+      it 'tureを返す' do
         expect(@user).to be_valid
       end
     end

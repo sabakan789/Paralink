@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   add_flash_types :success, :info, :warning, :danger
 
-  helper_method :current_user, :logged_in?, :log_in
+  helper_method :current_user, :logged_in?, :log_in, :login_check
 
   def log_in(user)
     session[:user_id] = user.id
@@ -17,4 +17,7 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
 
+  def login_check
+    redirect_to root_url, danger: 'ログインしてください' if current_user.nil?
+  end
 end

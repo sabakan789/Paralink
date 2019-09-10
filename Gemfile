@@ -36,7 +36,6 @@ gem 'carrierwave'
 gem 'kaminari'
 gem 'ransack'
 gem 'rmagick'
-gem 'rubocop', require: false
 gem "jquery-rails"
 
 # Use Capistrano for deployment
@@ -48,6 +47,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem "factory_bot_rails"
+  gem 'rubocop', require: false
   gem 'rspec-rails', '~> 3.8'
   gem 'selenium-webdriver'
   gem 'spring-commands-rspec'

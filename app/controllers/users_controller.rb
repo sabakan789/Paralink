@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :user_search
+  before_action :login_check, {only: [:edit, :update, :show, :destroy]}
   def new
     @user = User.new
   end
@@ -25,7 +26,7 @@ class UsersController < ApplicationController
       log_in @user
       redirect_to @user, success: '登録に成功しました'
     else
-      flash.now[:danger] = "登録に失敗しました"
+      flash.now[:danger] = '登録に失敗しました'
       render :new
     end
   end
@@ -41,7 +42,7 @@ class UsersController < ApplicationController
         redirect_to @user, success: '登録情報を編集しました'
       else
         flash.now[:danger] = '編集に失敗しました'
-        render :edit and return
+        render(:edit) && return
       end
     else
       redirect_to root_url
@@ -64,6 +65,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end

@@ -6,7 +6,7 @@ RSpec.describe Relationship, type: :model do
     @relationship = Relationship.new(
       following_id: user.id,
       follower_id: user.id
-      )
+    )
   end
 
   describe 'following_id,follower_id' do
@@ -20,7 +20,7 @@ RSpec.describe Relationship, type: :model do
   describe 'following_id' do
     context '空欄の場合' do
       it 'falseを返す' do
-        @relationship.following_id = " "
+        @relationship.following_id = ' '
         expect(@relationship.save).to be_falsey
       end
     end
@@ -28,7 +28,7 @@ RSpec.describe Relationship, type: :model do
   describe 'follower_id' do
     context '空欄の場合' do
       it 'falseを返す' do
-        @relationship.follower_id = " "
+        @relationship.follower_id = ' '
         expect(@relationship.save).to be_falsey
       end
     end

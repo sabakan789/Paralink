@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_action :login_check
   def new
     @profile = Profile.new
   end
@@ -8,7 +9,7 @@ class ProfilesController < ApplicationController
     if @profile.save
       redirect_to user_path(@profile), success: 'プロフィールを作成しました'
     else
-      flash.now[:danger] = "プロフィールの作成に失敗しました"
+      flash.now[:danger] = 'プロフィールの作成に失敗しました'
       render :new
     end
   end
@@ -28,6 +29,7 @@ class ProfilesController < ApplicationController
   end
 
   private
+
   def profile_params
     params.require(:profile).permit(:profile, :userimage, :user_id)
   end

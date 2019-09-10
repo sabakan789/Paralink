@@ -4,12 +4,12 @@ RSpec.describe Comment, type: :model do
   before do
     user = FactoryBot.create(:user)
     micropost = Micropost.create(
-      content: "test",
+      content: 'test',
       user_id: user.id
-      )
+    )
     @comment = Comment.new(
-      comment:      "test",
-      user_id:      user.id,
+      comment: 'test',
+      user_id: user.id,
       micropost_id: micropost.id
     )
   end
@@ -25,25 +25,25 @@ RSpec.describe Comment, type: :model do
   describe 'comment' do
     context '空欄の場合' do
       it 'falseを返す' do
-        @comment.comment = " "
+        @comment.comment = ' '
         expect(@comment).to_not be_valid
       end
     end
     context '1文字の場合' do
       it 'tureを返す' do
-        @comment.comment = "a"
+        @comment.comment = 'a'
         expect(@comment).to be_valid
       end
     end
     context '120文字の場合' do
       it 'tureを返す' do
-        @comment.comment = "a"*120
+        @comment.comment = 'a' * 120
         expect(@comment).to be_valid
       end
     end
     context '121文字の場合' do
       it 'falseを返す' do
-        @comment.comment = "a"*121
+        @comment.comment = 'a' * 121
         expect(@comment).to_not be_valid
       end
     end
@@ -51,7 +51,7 @@ RSpec.describe Comment, type: :model do
   describe 'user_id' do
     context '空欄の場合' do
       it 'falseを返す' do
-        @comment.user_id = " "
+        @comment.user_id = ' '
         expect(@comment).to_not be_valid
       end
     end
@@ -59,7 +59,7 @@ RSpec.describe Comment, type: :model do
   describe 'micropost_id' do
     context '空欄の場合' do
       it 'falseを返す' do
-        @comment.micropost_id = " "
+        @comment.micropost_id = ' '
         expect(@comment).to_not be_valid
       end
     end

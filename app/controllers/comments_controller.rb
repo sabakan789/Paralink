@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :login_check
   def new
     @comment = Comment.new
   end
@@ -24,6 +25,7 @@ class CommentsController < ApplicationController
   end
 
   private
+
   def comment_params
     params.require(:comment).permit(:comment, :micropost_id, :user_id)
   end

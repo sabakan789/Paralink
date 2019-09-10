@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  before_action :login_check
   def index
     @favorite_microposts = current_user.favorite_microposts
   end

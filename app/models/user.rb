@@ -5,9 +5,9 @@ class User < ApplicationRecord
 
   validates :email, presence: true,
                     uniqueness: true,
-                    format: {with: /([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+\.([a-zA-Z0-9\._-]+)/ }
+                    format: { with: /([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+\.([a-zA-Z0-9\._-]+)/ }
 
-  PW_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,32}\z/i
+  PW_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,32}\z/i.freeze
   validates :password, presence: true, format: { with: PW_REGEX }
 
   has_secure_password
@@ -19,19 +19,19 @@ class User < ApplicationRecord
   has_many :favorites
   has_many :favorite_micropsts, through: :favorites, source: 'micropst'
   has_many :active_relationships,
-            class_name: 'Relationship',
-            foreign_key: :following_id,
-            dependent: :destroy
+           class_name: 'Relationship',
+           foreign_key: :following_id,
+           dependent: :destroy
   has_many :followings,
-            through: :active_relationships,
-            source: :follower
+           through: :active_relationships,
+           source: :follower
   has_many :passive_relationships,
-            class_name: 'Relationship',
-            foreign_key: :follower_id,
-            dependent: :destroy
+           class_name: 'Relationship',
+           foreign_key: :follower_id,
+           dependent: :destroy
   has_many :followers,
-            through: :passive_relationships,
-            source: :following
+           through: :passive_relationships,
+           source: :following
 
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?

@@ -4,9 +4,9 @@ RSpec.describe Favorite, type: :model do
   before do
     user = FactoryBot.create(:user)
     micropost = Micropost.create(
-      content: "test",
+      content: 'test',
       user_id: user.id
-      )
+    )
     @favorite = Favorite.new(
       user_id: user.id,
       micropost_id: micropost.id
@@ -24,7 +24,7 @@ RSpec.describe Favorite, type: :model do
   describe 'user_id' do
     context '空欄の場合' do
       it 'falseを返す' do
-        @favorite.user_id = " "
+        @favorite.user_id = ' '
         expect(@favorite.save).to be_falsey
       end
     end
@@ -33,7 +33,7 @@ RSpec.describe Favorite, type: :model do
   describe 'micropost_id' do
     context '空欄の場合' do
       it 'falseを返す' do
-        @favorite.micropost_id = " "
+        @favorite.micropost_id = ' '
         expect(@favorite.save).to be_falsey
       end
     end

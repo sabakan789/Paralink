@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  before_action :login_check
   def new
     @topic = Topic.new
   end
@@ -9,7 +10,7 @@ class TopicsController < ApplicationController
     if @topic.save
       redirect_to micropost_path(@micropost), success: '画像を追加しました'
     else
-      flash.now[:danger] = "画像の追加に失敗しました"
+      flash.now[:danger] = '画像の追加に失敗しました'
       render :new
     end
   end
@@ -20,12 +21,13 @@ class TopicsController < ApplicationController
     if @topic.destroy
       redirect_to micropost_path(@micropost), success: '画像を削除しました'
     else
-      redirect_to micropost_path(@micropost), danger: "画像の削除に失敗しました"
+      redirect_to micropost_path(@micropost), danger: '画像の削除に失敗しました'
     end
   end
 
   private
+
   def topic_params
-    params.require(:topic).permit(:image , :description , :micropost_id)
+    params.require(:topic).permit(:image, :description, :micropost_id)
   end
 end

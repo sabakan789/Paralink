@@ -5,12 +5,12 @@ class UserimageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
-  process :resize_to_limit => [400, 400]
+  process resize_to_limit: [400, 400]
 
-  process :convert => 'jpg'
+  process convert: 'jpg'
 
   def extension_white_list
-    %w(jpg jpeg png)
+    %w[jpg jpeg png]
   end
 
   def size_range

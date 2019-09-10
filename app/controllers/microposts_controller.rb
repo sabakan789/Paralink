@@ -1,4 +1,5 @@
 class MicropostsController < ApplicationController
+  before_action :login_check, {only: [:new, :search, :show, :create, :destroy]}
   def new
     @micropost = Micropost.new
   end
@@ -33,6 +34,7 @@ class MicropostsController < ApplicationController
   end
 
   private
+
   def micropost_params
     params.require(:micropost).permit(:content)
   end

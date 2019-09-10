@@ -5,10 +5,10 @@ RSpec.describe Profile, type: :model do
     before do
       user = FactoryBot.create(:user)
       @profile = Profile.new(
-        profile: "test",
+        profile: 'test',
         userimage: Rack::Test::UploadedFile.new(File.join(Rails.root, 'app/assets/images/figure_standing.png')),
         user_id: user.id
-        )
+      )
     end
 
     describe 'profile,userimage,user_id' do
@@ -22,25 +22,25 @@ RSpec.describe Profile, type: :model do
     describe 'profile' do
       context '空欄の場合' do
         it 'falseを返す' do
-          @profile.profile = " "
+          @profile.profile = ' '
           expect(@profile).to_not be_valid
         end
       end
       context '1文字の場合' do
         it 'falseを返す' do
-          @profile.profile = "a"
+          @profile.profile = 'a'
           expect(@profile).to be_valid
         end
       end
       context '120文字の場合' do
         it 'falseを返す' do
-          @profile.profile = "a"*250
+          @profile.profile = 'a' * 250
           expect(@profile).to be_valid
         end
       end
       context '121文字の場合' do
         it 'falseを返す' do
-          @profile.profile = "a"*251
+          @profile.profile = 'a' * 251
           expect(@profile).to_not be_valid
         end
       end
@@ -49,7 +49,7 @@ RSpec.describe Profile, type: :model do
     describe 'userimage' do
       context '空欄の場合' do
         it 'falseを返す' do
-          @profile.userimage = " "
+          @profile.userimage = ' '
           expect(@profile).to_not be_valid
         end
       end
@@ -58,7 +58,7 @@ RSpec.describe Profile, type: :model do
     describe 'user_id' do
       context '空欄の場合' do
         it 'falseを返す' do
-          @profile.user_id = " "
+          @profile.user_id = ' '
           expect(@profile).to_not be_valid
         end
       end

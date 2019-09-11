@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :user_search
-  before_action :login_check, {only: [:edit, :update, :show, :destroy]}
+  before_action :login_check, only: %i[search index show edit update follows followers destroy]
   def new
     @user = User.new
   end

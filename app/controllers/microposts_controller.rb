@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :login_check, {only: [:new, :search, :show, :create, :destroy]}
+  before_action :login_check, only: %i[new search show create destroy]
   def new
     @micropost = Micropost.new
   end

@@ -1,21 +1,21 @@
 <div class="wrapper">
   <div class="container add-color mypage-container">
     <div class="row">
-      <h1 class="text-center text-white col-md-3 ">
+      <h2 class="text-center text-white col-md-3 col-sm-12 col-xs-12">
         <%= @user.name %>
-      </h1>
+      </h2>
       <% if @user == current_user %>
-        <%=link_to "フォロー一覧", follows_user_path(@user.id), class: 'btn btn-white side-btn col-md-2' %>
-        <%=link_to "フォロワー一覧", followers_user_path(@user.id), class: 'btn btn-white side-btn col-md-2' %>
-        <%= link_to '登録情報の変更', edit_user_path, class: 'btn btn-white side-btn col-md-2' %>
-        <%= link_to '退会する', user_path, method: :delete, class: 'btn btn-white side-btn col-md-2', data: {confirm: "全てのデータが削除されてしましますが、本当に退会しますか？" }%>
+        <%=link_to "フォロー一覧", follows_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 col-sm-2 col-xs-5' %>
+        <%=link_to "フォロワー一覧", followers_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 col-sm-3 col-xs-5' %>
+        <%= link_to '登録情報の変更', edit_user_path, class: 'btn btn-white side-btn col-md-2 col-sm-3  col-xs-5' %>
+        <%= link_to '退会する', user_path, method: :delete, class: 'btn btn-white side-btn col-md-2 col-sm-2  col-xs-5', data: {confirm: "全てのデータが削除されてしましますが、本当に退会しますか？" }%>
       <% else %>
-        <%=link_to "フォロー一覧", follows_user_path(@user.id), class: 'btn btn-white side-btn col-md-2' %>
-        <%=link_to "フォロワー一覧", followers_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 ' %>
+        <%=link_to "フォロー一覧", follows_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 col-sm-3 col-xs-5' %>
+        <%=link_to "フォロワー一覧", followers_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 col-sm-3 col-xs-5 col-xs-offset-5' %>
           <% if @user.followed_by?(current_user) %>
-            <%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete , class: 'btn user-show-following side-btn col-md-2 pull-right'%>
+            <%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete , class: 'btn user-show-following side-btn col-md-3 col-sm-4 col-xs-5'%>
           <% else %>
-            <%=link_to "フォローする", user_relationships_path(@user.id), method: :post , class: 'btn user-show-follow side-btn col-md-2 pull-right'%>
+            <%=link_to "フォローする", user_relationships_path(@user.id), method: :post , class: 'btn user-show-follow side-btn col-md-3 col-sm-4  col-xs-5'%>
           <% end %>
       <% end %>
     </div>
@@ -25,10 +25,10 @@
       <h2>プロフィール</h2>
       <% if @profile.nil? %>
         <div class="col-md-12">
-          <div class="user-profile col-md-offset-1 col-md-3">
+          <div class="user-profile col-md-offset-1 col-md-3 col-sm-4 col-xs-offset-1 col-xs-10">
             <%= image_tag "figure_standing.png",alt:'デフォルトの画像です',class:" center-block default-image"%>
           </div>
-          <div class="col-md-offset-1 user-profile col-md-6">
+          <div class="col-md-offset-1 user-profile col-md-6 col-sm-offset-1 col-sm-7 col-xs-12">
             <div class="bgred">
               <p></p>
             </div>
@@ -39,10 +39,10 @@
         <% end %>
       <% else %>
         <div class="col-md-12">
-          <div class="user-profile col-md-offset-1 col-md-3">
+          <div class="user-profile col-md-offset-1 col-md-3 col-sm-4 col-xs-offset-1 col-xs-10">
             <%= image_tag @user.profile.userimage, :size => "200x200", alt:'#{@user.name}のプロフィール画像です',class: "center-block"%>
           </div>
-          <div class="col-md-offset-1 user-profile col-md-6">
+          <div class="col-md-offset-1 user-profile col-md-6 col-sm-offset-1 col-sm-7 col-xs-12">
             <div class="bgred">
               <p><%= @user.profile.profile %></p>
             </div>
@@ -59,7 +59,7 @@
     <% if @user != current_user %>
       <% @microposts.order('created_at DESC').each do |micropost| %>
         <div class="row">
-          <div class="micropost-conteiner col-md-offset-2 col-md-8">
+          <div class="micropost-conteiner col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
             <h2 class="micropost-user-name">
               <%= micropost.user.name %>
             </h2>
@@ -77,10 +77,10 @@
                 </div>
               <% end %>
             </div>
-            <div class="col-md-3 comment-count">
+            <div class="col-md-3 col-sm-4 col-xs-5 comment-count">
               コメント数：<%= micropost.comments.count %>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-2 col-xs-offset-1 col-xs-4">
               <% if !micropost.favorite_users.include?(current_user) %>
                 <%= link_to favorites_path(micropost_id: micropost.id), method: :post do %>
                   <i class="far fa-heart" aria-hidden="true"></i>
@@ -98,7 +98,7 @@
     <% else %>
       <% @microposts.order('created_at DESC').each do |micropost| %>
         <div class="row">
-          <div class=" micropost-conteiner col-md-offset-2 col-md-8">
+          <div class=" micropost-conteiner col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-offset-1 col-xs-10">
             <h2 class="micropost-user-name">
               <%= micropost.user.name %>
             </h2>

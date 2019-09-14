@@ -3,32 +3,32 @@
     <h1 class="text-white text-center">ユーザー検索</h1>
     <h2 class="text-white text-center">キーワードを含むユーザーを検索できます</h2>
     <div class="row">
-      <div class="col-md-offset-3 col-md-6 form-conter add-color">
+      <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8  col-xs-offset-1 col-xs-10 form-conter add-color">
         <%= search_form_for @search_u, url:user_search_path do |f| %>
-          <div class="form-group">
-            <%= f.label :name_cont, "ユーザーネーム" %>
-            <%= f.search_field :name_cont, class: "form-control" %>
-          </div>
-          <%= f.submit "検索",class: 'btn-block btn-white ' %>
+        <div class="form-group">
+          <%= f.label :name_cont, "ユーザーネーム" %>
+          <%= f.search_field :name_cont, class: "form-control" %>
+        </div>
+        <%= f.submit "検索",class: 'btn-block btn-white ' %>
         <% end %>
       </div>
     </div>
     <% if @search_users.any? %>
       <% @search_users.each do |result| %>
         <div class="row">
-          <div class="col-md-offset-2 col-md-8 micropost-conteiner">
+          <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8  col-xs-offset-1 col-xs-10 micropost-conteiner">
             <div class="index-user-name">
               <% if !result.profile.nil? %>
-                <%= image_tag result.profile.userimage, alt:'#{result.name}のプロフィール画像です', :size => "100x50", class: "index-image col-md-2" %>
-                <%= link_to result.name, user_path(result.id),class: 'col-md-3', :style=>"color:white;" %>
+                <h2><%= link_to result.name, user_path(result.id),class: 'col-4', :style=>"color:white;" %></h2>
+                <%= image_tag result.profile.userimage, alt:'#{result.name}のプロフィール画像です', :size => "100x50", class: "index-image col-2" %>
               <% else %>
-                <%= link_to result.name, user_path(result.id),class: 'col-md-offset-2 col-md-3', :style=>"color:white;" %>
+                <h2><%= link_to result.name, user_path(result.id),class: 'col-4', :style=>"color:white;" %></h2>
               <% end %>
               <% if result != current_user %>
                 <% if result.followed_by?(current_user) %>
-                  <%=link_to "フォロー済み", user_relationships_path(result.id), method: :delete, class: 'col-md-offset-2 col-md-4',:style=>"color:white;"%>
+                  <%=link_to "フォロー済み", user_relationships_path(result.id), method: :delete, class: 'pull-right',:style=>"color:white;"%>
                 <% else %>
-                  <%=link_to "フォローする", user_relationships_path(result.id), method: :post, class: 'col-md-offset-2 col-md-4',:style=>"color:white;" %>
+                  <%=link_to "フォローする", user_relationships_path(result.id), method: :post, class: 'pull-right',:style=>"color:white;" %>
                 <% end %>
               <% end %>
             </div>
@@ -38,7 +38,7 @@
     <% else %>
       <div class="container">
         <div class="row">
-          <div class="col-md-offset-2 col-md-8 text-center">
+          <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 text-center">
             <h1>キーワードを含むユーザーを検索できませんでした</h1>
             <h2><%= link_to "ユーザー一覧に戻る", users_path, :style=>"color:#ff0;" %></h2>
           </div>

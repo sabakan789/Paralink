@@ -33,9 +33,11 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', require: false
 gem 'bootstrap-sass'
 gem 'carrierwave'
+gem 'dotenv-rails'
+gem 'fog-aws'
 gem 'kaminari'
+gem 'mini_magick'
 gem 'ransack'
-gem 'rmagick'
 gem "jquery-rails"
 
 # Use Capistrano for deployment

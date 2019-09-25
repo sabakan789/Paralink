@@ -27,18 +27,18 @@ RSpec.describe Profile, type: :model do
         end
       end
       context '1文字の場合' do
-        it 'falseを返す' do
+        it 'tureを返す' do
           @profile.profile = 'a'
           expect(@profile).to be_valid
         end
       end
-      context '120文字の場合' do
-        it 'falseを返す' do
+      context '250文字の場合' do
+        it 'tureを返す' do
           @profile.profile = 'a' * 250
           expect(@profile).to be_valid
         end
       end
-      context '121文字の場合' do
+      context '251文字の場合' do
         it 'falseを返す' do
           @profile.profile = 'a' * 251
           expect(@profile).to_not be_valid

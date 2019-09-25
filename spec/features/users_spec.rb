@@ -5,7 +5,7 @@ RSpec.feature 'Users', type: :feature do
     @user = User.create(
       name: 'TEST_USER',
       email: 'test@example.com',
-      password: 'password1234',
+      password: 'password1234'
     )
   end
   it '新規登録する' do

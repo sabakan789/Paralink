@@ -5,7 +5,7 @@ RSpec.feature 'Comments', type: :feature do
     @user = User.create(
       name: 'TEST_USER',
       email: 'test@example.com',
-      password: 'password1234',
+      password: 'password1234'
     )
     visit root_path
     visit login_path

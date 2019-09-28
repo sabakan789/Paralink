@@ -15,8 +15,13 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'capybara/rspec'
 RSpec.configure do |config|
-  config.before(:each, type: :system) do
-    driven_by :seleium_chrome_headless
+  # config.before(:each, type: :system) do
+  #   driven_by :seleium_chrome_headless
+  # end
+  config.before(:each) do |example|
+    if example.metadata[:type] == :system
+      driven_by :selenium_chrome_headless, screen_size: [800, 1000]
+    end
   end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest

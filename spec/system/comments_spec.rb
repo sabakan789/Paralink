@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Comments', type: :feature do
+RSpec.feature 'Comments', type: :system do
   before do
     @user = User.create(
       name: 'TEST_USER',

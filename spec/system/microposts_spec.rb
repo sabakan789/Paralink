@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Microposts', type: :feature do
+RSpec.feature 'Microposts', type: :system do
   before do
     @user = User.create(
       name: 'TEST_USER',

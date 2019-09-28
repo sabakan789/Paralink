@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Users', type: :feature do
+RSpec.feature 'Users', type: :system do
   before do
     @user = User.create(
       name: 'TEST_USER',
@@ -11,11 +11,10 @@ RSpec.feature 'Users', type: :feature do
   it '新規登録する' do
     visit root_path
     visit new_user_path
-    fill_in 'user_name', with: '太郎'
-    fill_in 'user_email', with: 'tarou@example.com'
-    fill_in 'user_password', with: 'tarou1234'
-    fill_in 'user_password_confirmation', with: 'tarou1234'
-
+    fill_in '名前', with: '太郎'
+    fill_in 'メールアドレス', with: 'tarou@example.com'
+    fill_in 'パスワード', with: 'tarou1234'
+    fill_in 'パスワード（確認）', with: 'tarou1234'
     click_on '登録'
     expect(page).to have_selector '.alert', text: '登録に成功しました'
   end

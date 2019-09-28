@@ -1,14 +1,5 @@
 version:  '3'
 services:
-  db:
-    image:  postgres
-    environment:
-      POSTGRES_PASSWORD: example
-    ports:
-    - '5432:5432'
-    volumes:
-      - postgresql-date:/var/lib/postgresql/date
-    tty:  true
   web:
     build:  .
     command:  bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -18,6 +9,21 @@ services:
       - "3000:3000"
     depends_on:
       - db
+    tty:  true
+    environment:
+      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
+  selenium_chrome:
+    image: selenium/standalone-chrome-debug
+    logging:
+      driver: none
+  db:
+    image:  postgres
+    environment:
+      POSTGRES_PASSWORD: example
+    ports:
+    - '5432:5432'
+    volumes:
+      - postgresql-date:/var/lib/postgresql/date
     tty:  true
 volumes:
   postgresql-date:

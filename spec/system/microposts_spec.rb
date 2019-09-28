@@ -9,8 +9,8 @@ RSpec.feature 'Microposts', type: :feature do
     )
     visit root_path
     visit login_path
-    fill_in 'メールアドレス', with: 'test@example.com'
-    fill_in 'パスワード', with: 'password1234'
+    fill_in 'sesstion_email', with: 'test@example.com'
+    fill_in 'sesstion_password', with: 'password1234'
     click_on 'ログインする'
     @micropost = Micropost.create(
       content: 'test',
@@ -20,9 +20,9 @@ RSpec.feature 'Microposts', type: :feature do
   it '投稿する' do
     expect do
       visit new_micropost_path
-      fill_in '投稿内容', with: 'TEST'
+      fill_in 'user_new_micropost', with: 'TEST'
       click_on '投稿する'
-      expect(page).to have_content '投稿しました'
+      expect(page).to have_selector '.alert', text: '投稿しました'
       expect(page).to have_content 'TEST'
     end.to change(@user.microposts, :count).by(1)
   end

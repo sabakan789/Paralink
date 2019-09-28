@@ -4,22 +4,6 @@ RSpec.describe UsersController, type: :controller do
   before do
     @user = FactoryBot.create(:user)
   end
-  # describe 'GET #new' do
-  #   render_views
-  #   it 'リクエストが成功する' do
-  #     get :new
-  #     expect(response.status).to eq 200
-  #   end
-  #   it 'newテンプレートで表示される' do
-  #     get :new
-  #     expect(response).to render_template :new
-  #   end
-  #   it 'h1に"新規登録"という記述がある' do
-  #     get :new
-  #     expect(response.body).to include "新規登録"
-  #   end
-  # end
-
   describe '未ログイン状態' do
     context 'GET #search の場合' do
       it 'ルートページへ遷移する' do

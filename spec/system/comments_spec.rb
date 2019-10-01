@@ -20,7 +20,6 @@ RSpec.feature 'Comments', type: :system do
   it 'コメントする' do
     visit microposts_path
     click_on 'test'
-    click_on 'コメントする'
     fill_in 'user_new_comment', with: 'test_comment'
     click_on 'コメントする'
     expect(page).to have_selector '.alert', text: 'コメントに成功しました'

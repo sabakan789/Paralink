@@ -1,0 +1,6 @@
+<%= form_with(model: [micropost, comment]) do |form| %>
+  <div class="form-group">
+    <%= form.text_area :comment, placeholder: "最大120文字です", class: 'form-control',id: 'user_new_comment' %>
+  </div>
+  <%= form.submit 'コメントをする',class: 'btn-block btn-white vertical-btn' %>
+<% end %>

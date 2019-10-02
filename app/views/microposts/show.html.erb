@@ -5,7 +5,7 @@
         <h2 class="micropost-user-name"><%= link_to @micropost.user.name ,user_path(@micropost.user), :style=>"color:white;"%></h2>
         <p class="micropost-content"><%= @micropost.content %></p>
         <% if @micropost.user == current_user %>
-          <%= link_to micropost_path(micropost_id: @micropost.id), method: :delete, data: {confirm: "この投稿を本当に削除しますか？"},class:'pull-right' do %>
+          <%= link_to micropost_path(micropost_id: @micropost.id), method: :delete, data: {confirm: "この投稿を本当に削除しますか？"}, local: true,class:'pull-right' do %>
             <i class="fas fa-trash" aria-hidden="true"></i>
           <% end %>
         <% end %>
@@ -29,20 +29,11 @@
             <%= link_to "画像を追加する", new_micropost_topic_path(micropost_id: @micropost.id), class: "btn-white btn" %>
           <% end %>
               <h2 class="text-center">コメント一覧</h2>
-          <% @micropost.comments.each do |comment| %>
-            <h3><%= link_to comment.user.name, user_path(comment.user), :style=>"color:white;" %></h3>
-            <p class="comment-text"><%= comment.comment %></p>
-            <% if comment.user == current_user %>
-              <%= link_to "コメントを削除", comments_destroy_path(micropost_id: @micropost.id, comment_id: comment.id), method: :delete, data: {confirm: "本当に削除しますか？" }, class: "btn delete-btn pull-right" %>
-            <% end %>
-          <% end %>
-          <%= form_with model: @comment,url: comments_create_path(micropost_id: @micropost.id,user_id: current_user.id), local: true do |form| %>
-            <div class="form-group">
-              <%= form.label :comment, 'コメント' %>
-              <%= form.text_area :comment, placeholder: "最大120文字です", class: 'form-control',id: 'user_new_comment' %>
-            </div>
-            <%= form.submit 'コメントする', class: 'btn-block btn-white vertical-btn' %>
-          <% end %>
+          <div id="comments_area">
+            <%= render partial: 'comments/index', locals: { comments: @comments } %>
+          </div>
+          <%= render partial: 'comments/form', locals: { comment: @comment, micropost: @micropost } %>
+          </div>
         <% else %>
           <% @micropost.topics.each do |topic| %>
             <%= image_tag topic.image.url , alt:'topic.description',class: "img-responsive center-block"%>
@@ -65,21 +56,11 @@
             <%=link_to "フォローする", user_relationships_path(@micropost.user.id), method: :post , class: 'btn btn-follow col-md-3 col-sm-4 col-xs-5'%>
           <% end %>
             <h2 class="text-center">コメント一覧</h2>
-          <% @micropost.comments.each do |comment| %>
-            <h3><%= link_to comment.user.name, user_path(comment.user), :style=>"color:white;" %></h3>
-            <p class="comment-text"><%= comment.comment %></p>
-            <% if comment.user == current_user %>
-              <%= link_to "コメントを削除", comments_destroy_path(micropost_id: @micropost.id, comment_id: comment.id), method: :delete, data: {confirm: "本当に削除しますか？" }, class: "btn delete-btn pull-right" %>
-            <% end %>
+          <div id="comments_area">
+            <%= render partial: 'comments/index', locals: { comments: @comments } %>
+          </div>
+          <%= render partial: 'comments/form', locals: { comment: @comment, micropost: @micropost } %>
           <% end %>
-          <%= form_with model: @comment,url: comments_create_path(micropost_id: @micropost.id,user_id: current_user.id), local: true do |form| %>
-            <div class="form-group">
-              <%= form.label :comment, 'コメント' %>
-              <%= form.text_area :comment, placeholder: "最大120文字です", class: 'form-control',id: 'user_new_comment' %>
-            </div>
-            <%= form.submit 'コメントする', class: 'btn-block btn-white vertical-btn' %>
-          <% end %>
-        <% end %>
       </div>
     </div>
   </div>

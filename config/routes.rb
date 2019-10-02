@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root 'homes#top'
 
   resources :microposts do
-    resources :topics
+    resource :comments, only: [:create, :destroy]
+    resources :topics, only: [:new, :create, :destroy]
   end
 
   get '/login', to: 'sessions#new'
@@ -11,7 +12,6 @@ Rails.application.routes.draw do
 
   resources :users do
     resource :profiles
-
     resource :relationships, only: [:create, :destroy]
     get :follows, on: :member
     get :followers, on: :member
@@ -26,7 +26,5 @@ Rails.application.routes.draw do
   get 'favorites/index'
   post '/favorites', to: 'favorites#create'
   delete '/favorites', to: 'favorites#destroy'
-
-  post 'comments/:micropost_id/create', to: 'comments#create', as:'comments_create'
-  delete 'comments/:micropost_id/destroy', to: 'comments#destroy', as:'comments_destroy'
 end
+

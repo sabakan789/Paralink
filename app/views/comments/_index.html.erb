@@ -1,0 +1,7 @@
+<% comments.each do |comment| %>
+  <h3><%= link_to comment.user.name, user_path(comment.user.id), :style=>"color:white;" %></h3>
+    <p class="comment-text"><%= comment.comment %></p>
+  <% if comment.user == current_user %>
+    <%= link_to "コメントを削除", micropost_comments_path(micropost_id: @micropost.id, comment_id: comment.id), method: :delete, remote: true , class: "btn delete-btn pull-right" %>
+  <% end %>
+<% end %>

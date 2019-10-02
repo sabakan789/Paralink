@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.feature 'Comments', type: :system do
   before do
@@ -17,12 +18,11 @@ RSpec.feature 'Comments', type: :system do
       user_id: @user.id
     )
   end
-  it 'コメントする' do
+  it 'コメントする', js: true do
     visit microposts_path
     click_on 'test'
     fill_in 'user_new_comment', with: 'test_comment'
-    click_on 'コメントする'
-    expect(page).to have_selector '.alert', text: 'コメントに成功しました'
+    click_button 'コメントをする'
     expect(page).to have_content 'test_comment'
   end
 end

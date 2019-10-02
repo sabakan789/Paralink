@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     @comment = @micropost.comments.build(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      redirect_to micropost_path(@comment.micropost), success: 'コメントに成功しました'
+      render 'index.js.erb'
     else
       redirect_to micropost_path(@comment.micropost), danger: 'コメントに失敗しました'
     end
@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
     @micropost = Micropost.find(params[:micropost_id])
     @comment = @micropost.comments.find(params[:comment_id])
     if @comment.destroy
-      redirect_to micropost_path(@comment.micropost.id), info: 'コメントを削除しました'
+      render 'index.js.erb'
     else
       redirect_to micropost_path(@comment.micropost.id), danger: 'コメントの削除に失敗しました'
     end

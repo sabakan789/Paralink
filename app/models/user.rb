@@ -36,4 +36,14 @@ class User < ApplicationRecord
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end
+
+  def self.find_or_create_from_auth(auth)
+    provider = auth[:provider]
+    uid = auth[:uid]
+    name = auth[:info][:name]
+
+    self.find_or_create_by(provider: provider, uid: uid) do |user|
+      user.username = name
+    end
+  end
 end

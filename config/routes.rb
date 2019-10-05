@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :topics, only: [:new, :create, :destroy]
   end
 
+  get 'auth/:provider/callback', to: 'sessions#create'
+
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

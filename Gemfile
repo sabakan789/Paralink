@@ -37,6 +37,9 @@ gem 'dotenv-rails'
 gem 'fog-aws'
 gem 'kaminari'
 gem 'mini_magick'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 gem 'ransack'
 gem "jquery-rails"
 

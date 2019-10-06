@@ -14,6 +14,16 @@
         </div>
           <%= form.submit "ログインする", class: 'btn-block btn-white vertical-btn' %>
         <% end %>
+        <p>
+          <%= link_to '/auth/twitter', class: "btn btn-social btn-twitter" do %>
+            <i class="fab fa-twitter"></i> Twitterアカウントでログイン
+          <% end %>
+        </p>
+        <p>
+          <%= link_to '/auth/facebook', class: "btn btn-social btn-facebook" do %>
+            <i class="fab fa-facebook-square"></i> Facebookアカウントでログイン
+          <% end %>
+        </p>
       </div>
     </div>
   </div>

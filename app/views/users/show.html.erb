@@ -7,7 +7,11 @@
       <% if @user == current_user %>
         <%=link_to "フォロー一覧", follows_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 col-sm-2 col-xs-5' %>
         <%=link_to "フォロワー一覧", followers_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 col-sm-3 col-xs-5' %>
-        <%= link_to '登録情報の変更', edit_user_path, class: 'btn btn-white side-btn col-md-2 col-sm-3  col-xs-5' %>
+          <%if @user.uid == 0%>
+            <%= link_to '登録情報の変更', edit_user_path, class: 'btn btn-white side-btn col-md-2 col-sm-3  col-xs-5' %>
+          <%else%>
+            <%= link_to '名前の変更', edit_user_path, class: 'btn btn-white side-btn col-md-2 col-sm-3  col-xs-5' %>
+          <%end%>
         <%= link_to '退会する', user_path, method: :delete, class: 'btn btn-white side-btn col-md-2 col-sm-2  col-xs-5', data: {confirm: "全てのデータが削除されてしましますが、本当に退会しますか？" }%>
       <% else %>
         <%=link_to "フォロー一覧", follows_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 col-sm-3 col-xs-5' %>

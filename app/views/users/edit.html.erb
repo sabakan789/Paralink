@@ -2,27 +2,39 @@
   <div class="container default-container">
     <h1 class="text-white text-center">登録情報を編集</h1>
     <div class="row">
-      <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8  col-xs-offset-1 col-xs-10">
-        <%= form_with (model: @user, local: true) do |form| %>
-          <div class="form-group">
-            <%= form.label :name, '名前' , class: 'text-white' %>
-            <%= form.text_field :name, placeholder: "最大15文字です", class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= form.label :email, 'メールアドレス' , class: 'text-white' %>
-            <%= form.text_field :email, class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= form.label :password, 'パスワード' , class: 'text-white' %>
-            <%= form.password_field :password,placeholder: "アルファベットと数字を", class: 'form-control' %>
-          </div>
-          <div class="form-group">
-            <%= form.label :password_confirmation, 'パスワード（確認）' , class: 'text-white' %>
-            <%= form.password_field :password_confirmation,placeholder:"最低1文字使用した8~32文字", class: 'form-control' %>
-          </div>
-            <%= form.submit "変更を保存", class: 'btn-block btn-white' %>
-        <% end %>
-      </div>
+      <%if @user.uid.present?%>
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8  col-xs-offset-1 col-xs-10">
+          <%= form_with model: @user, local: true, multipart: true do |form| %>
+            <div class="form-group">
+              <%= form.label :name, '名前' , class: 'text-white' %>
+              <%= form.text_field :name, placeholder: "最大15文字です", class: 'form-control' %>
+            </div>
+              <%= form.submit "変更を保存", class: 'btn-block btn-white' %>
+          <% end %>
+        </div>
+      <%else%>
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8  col-xs-offset-1 col-xs-10">
+          <%= form_with model: @user, local: true, multipart: true do |form| %>
+            <div class="form-group">
+              <%= form.label :name, '名前' , class: 'text-white' %>
+              <%= form.text_field :name, placeholder: "最大15文字です", class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :email, 'メールアドレス' , class: 'text-white' %>
+              <%= form.text_field :email, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :password, 'パスワード' , class: 'text-white' %>
+              <%= form.password_field :password,placeholder: "アルファベットと数字を", class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :password_confirmation, 'パスワード（確認）' , class: 'text-white' %>
+              <%= form.password_field :password_confirmation,placeholder:"最低1文字使用した8~32文字", class: 'form-control' %>
+            </div>
+              <%= form.submit "変更を保存", class: 'btn-block btn-white' %>
+          <% end %>
+        </div>
+      <%end%>
     </div>
   </div>
 </div>

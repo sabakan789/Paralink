@@ -32,6 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'bootsnap', require: false
 gem 'bootstrap-sass'
+gem 'bootstrap-social-rails'
 gem 'carrierwave'
 gem 'dotenv-rails'
 gem 'fog-aws'

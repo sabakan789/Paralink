@@ -38,11 +38,20 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if current_user == @user
-      if @user.update(user_params)
-        redirect_to @user, success: '登録情報を編集しました'
+      if @user.uid.present?
+        if @user.update(user_name)
+          redirect_to @user, success: '登録情報を編集しました'
+        else
+          flash.now[:danger] = '編集に失敗しました'
+          render(:edit) && return
+        end
       else
-        flash.now[:danger] = '編集に失敗しました'
-        render(:edit) && return
+        if @user.update(user_params)
+          redirect_to @user, success: '登録情報を編集しました'
+        else
+          flash.now[:danger] = '編集に失敗しました'
+          render(:edit) && return
+        end
       end
     else
       redirect_to root_url
@@ -68,5 +77,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def user_name
+    params.require(:user).permit(:name)
   end
 end

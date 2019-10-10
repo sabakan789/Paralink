@@ -2,8 +2,7 @@ class User < ApplicationRecord
   validates :name,
               presence: true,
               uniqueness: true,
-              length: { maximum: 15 },
-              if: :published?
+              length: { maximum: 15 }
 
   validates :email,
               presence: true,

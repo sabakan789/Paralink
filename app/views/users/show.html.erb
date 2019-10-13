@@ -4,23 +4,21 @@
       <h2 class="text-center text-white col-md-3 col-sm-12 col-xs-12">
         <%= @user.name %>
       </h2>
-      <% if @user == current_user %>
         <%=link_to "フォロー一覧", follows_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 col-sm-2 col-xs-5' %>
         <%=link_to "フォロワー一覧", followers_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 col-sm-3 col-xs-5' %>
-          <%if @user.uid == 0%>
-            <%= link_to '登録情報の変更', edit_user_path, class: 'btn btn-white side-btn col-md-2 col-sm-3  col-xs-5' %>
-          <%else%>
-            <%= link_to '名前の変更', edit_user_path, class: 'btn btn-white side-btn col-md-2 col-sm-3  col-xs-5' %>
-          <%end%>
+      <% if @user == current_user %>
+        <% if @user.uid == "0" %>
+          <%= link_to '登録情報の変更', edit_user_path, class: 'btn btn-white side-btn col-md-2 col-sm-3  col-xs-5' %>
+        <% else %>
+          <%= link_to '名前の変更', edit_user_path, class: 'btn btn-white side-btn col-md-2 col-sm-3  col-xs-5' %>
+        <% end %>
         <%= link_to '退会する', user_path, method: :delete, class: 'btn btn-white side-btn col-md-2 col-sm-2  col-xs-5', data: {confirm: "全てのデータが削除されてしましますが、本当に退会しますか？" }%>
       <% else %>
-        <%=link_to "フォロー一覧", follows_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 col-sm-3 col-xs-5' %>
-        <%=link_to "フォロワー一覧", followers_user_path(@user.id), class: 'btn btn-white side-btn col-md-2 col-sm-3 col-xs-5 col-xs-offset-5' %>
-          <% if @user.followed_by?(current_user) %>
-            <%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete , class: 'btn user-show-following side-btn col-md-3 col-sm-4 col-xs-5'%>
-          <% else %>
-            <%=link_to "フォローする", user_relationships_path(@user.id), method: :post , class: 'btn user-show-follow side-btn col-md-3 col-sm-4  col-xs-5'%>
-          <% end %>
+        <% if @user.followed_by?(current_user) %>
+          <%=link_to "フォロー済み", user_relationships_path(@user.id), method: :delete , class: 'btn user-show-following side-btn col-md-3 col-sm-4 col-xs-5'%>
+        <% else %>
+          <%=link_to "フォローする", user_relationships_path(@user.id), method: :post , class: 'btn user-show-follow side-btn col-md-3 col-sm-4  col-xs-5'%>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -33,9 +31,8 @@
             <%= image_tag "figure_standing.png",alt:'デフォルトの画像です',class:" center-block default-image"%>
           </div>
           <div class="col-md-offset-1 user-profile col-md-6 col-sm-offset-1 col-sm-7 col-xs-12">
-            <div class="bgred">
-              <p></p>
-            </div>
+          <p class="bgred">
+          </p>
           </div>
         </div>
         <% if @user == current_user %>
@@ -47,9 +44,9 @@
             <%= image_tag @user.profile.userimage, :size => "200x200", alt:'#{@user.name}のプロフィール画像です',class: "center-block"%>
           </div>
           <div class="col-md-offset-1 user-profile col-md-6 col-sm-offset-1 col-sm-7 col-xs-12">
-            <div class="bgred">
-              <p><%= @user.profile.profile %></p>
-            </div>
+            <p class="bgred">
+              <%= @user.profile.profile %>
+            </p>
           </div>
         </div>
         <% if @user == current_user %>

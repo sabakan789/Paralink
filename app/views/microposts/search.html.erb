@@ -13,57 +13,56 @@
         <% end %>
       </div>
     </div>
-    <% if @search_microposts.any? %>
-      <% @search_microposts.order('created_at DESC').each do |micropost| %>
-        <div class="container">
-          <div class="row">
-            <div class="micropost-conteiner add-color col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10  col-xs-offset-1 col-xs-10">
-              <h2 class="micropost-user-name">
-                <%= link_to micropost.user.name ,user_path(micropost.user), :style=>"color:white;"%>
-              </h2>
-              <%= link_to micropost_path(micropost), :style=>"color:white;" do %>
-                <div class="micropost-content col-md-8">
-                  <%= micropost.content %>
+    <% @search_microposts.order('created_at DESC').each do |micropost| %>
+      <div class="container">
+        <div class="row">
+          <div class="micropost-conteiner col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10  col-xs-offset-1 col-xs-10">
+            <h2 class="micropost-user-name">
+              <%= link_to micropost.user.name ,user_path(micropost.user), :style=>"color:white;"%>
+            </h2>
+            <%= link_to micropost_path(micropost), :style=>"color:white;" do %>
+              <div class="micropost-content col-md-8">
+                <%= micropost.content %>
+              </div>
+            <% end %>
+            <div class="row">
+              <% micropost.topics.each do |topic| %>
+                <div class="col-md-3 index-image">
+                  <%= link_to micropost_path(micropost) do %>
+                    <%= image_tag topic.image.url , alt:'topic.description',class: "img-responsive center-block"%>
+                  <% end %>
                 </div>
               <% end %>
-              <div class="row">
-                <% micropost.topics.each do |topic| %>
-                  <div class="col-md-3 index-image">
-                    <%= link_to micropost_path(micropost) do %>
-                      <%= image_tag topic.image.url , alt:'topic.description',class: "img-responsive center-block"%>
-                    <% end %>
-                  </div>
+            </div>
+            <div class="col-md-3 col-sm-2 col-xs-5 comment-count">
+              コメント数：<%= micropost.comments.count %>
+            </div>
+            <div class="col-md-3 col-sm-2 col-xs-offset-1 col-xs-4">
+              <% if !micropost.favorite_users.include?(current_user) %>
+                <%= link_to favorites_path(micropost_id: micropost.id), method: :post do %>
+                  <i class="far fa-heart" aria-hidden="true"></i>
                 <% end %>
-              </div>
-              <div class="col-md-3 col-sm-2 col-xs-5 comment-count">
-                コメント数：<%= micropost.comments.count %>
-              </div>
-              <div class="col-md-3 col-sm-2 col-xs-offset-1 col-xs-4">
-                <% if !micropost.favorite_users.include?(current_user) %>
-                  <%= link_to favorites_path(micropost_id: micropost.id), method: :post do %>
-                    <i class="far fa-heart" aria-hidden="true"></i>
-                  <% end %>
+              <% else %>
+                <%= link_to favorites_path(micropost_id: micropost.id), method: :delete do %>
+                  <i class="fa fa-heart" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            <%= micropost.favorite_users.count %>
+            </div>
+            <div class="col-md-3 col-sm-2 col-xs-4">
+              <% if current_user != micropost.user %>
+                <% if micropost.user.followed_by?(current_user) %>
+                  <%=link_to "フォロー済み", user_relationships_path(micropost.user.id), method: :delete , class: 'btn btn-following'%>
                 <% else %>
-                  <%= link_to favorites_path(micropost_id: micropost.id), method: :delete do %>
-                    <i class="fa fa-heart" aria-hidden="true"></i>
-                  <% end %>
+                  <%=link_to "フォローする", user_relationships_path(micropost.user.id), method: :post , class: 'btn btn-follow'%>
                 <% end %>
-              <%= micropost.favorite_users.count %>
-              </div>
-              <div class="col-md-3 col-sm-2 col-xs-4">
-                <% if current_user != micropost.user %>
-                  <% if micropost.user.followed_by?(current_user) %>
-                    <%=link_to "フォロー済み", user_relationships_path(micropost.user.id), method: :delete , class: 'btn btn-following'%>
-                  <% else %>
-                    <%=link_to "フォローする", user_relationships_path(micropost.user.id), method: :post , class: 'btn btn-follow'%>
-                  <% end %>
-                <% end %>
-              </div>
+              <% end %>
             </div>
           </div>
         </div>
-      <% end %>
-    <% else %>
+      </div>
+    <% end %>
+    <% unless @search_microposts.any? %>
       <div class="container">
         <div class="row">
           <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 text-center">

@@ -1,0 +1,29 @@
+<%= form_with model: user, local: true, multipart: true do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :name, '名前' , class: 'text-white'%>
+    <%= form.text_field :name, placeholder: "最大15文字です", class: 'form-control',id: 'user_name' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :email, 'メールアドレス' , class: 'text-white' %>
+    <%= form.text_field :email, class: 'form-control',id: 'user_email' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :password, 'パスワード' , class: 'text-white' %>
+    <%= form.password_field :password,placeholder: "アルファベットと数字を", class: 'form-control',id: 'user_password' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :password_confirmation, 'パスワード（確認）' , class: 'text-white' %>
+    <%= form.password_field :password_confirmation,placeholder:"最低1文字使用した8~32文字", class: 'form-control',id: 'user_password_confirmation' %>
+  </div>
+    <%= form.submit "登録", class: 'btn-block btn-white vertical-btn' %>
+<% end %>

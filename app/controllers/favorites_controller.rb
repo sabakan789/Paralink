@@ -1,9 +1,5 @@
 class FavoritesController < ApplicationController
   before_action :login_check
-  def index
-    @favorite_microposts = current_user.favorite_microposts
-  end
-
   def create
     favorite = Favorite.new
     favorite.user_id = current_user.id

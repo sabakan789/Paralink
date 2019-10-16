@@ -39,6 +39,8 @@ class User < ApplicationRecord
            through: :passive_relationships,
            source: :following
 
+  scope :recent, -> { order('created_at desc') }
+
   def followed_by?(user)
     passive_relationships.find_by(following_id: user.id).present?
   end

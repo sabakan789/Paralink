@@ -3,7 +3,7 @@
     <h1 class="text-white text-center">みんなの投稿</h1>
     <% if logged_in? %>
       <%= link_to "キーワードで検索する", micropost_search_path ,class: 'pull-right col-3  btn btn-white'%>
-      <% @microposts.order('created_at DESC').each do |micropost| %>
+      <% @microposts.recent.each do |micropost| %>
         <div class="row">
           <div class="micropost-conteiner col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
             <h2 class="micropost-user-name">
@@ -26,16 +26,16 @@
             <div class="col-md-3 col-sm-2 col-xs-5 comment-count">
               コメント数：<%= micropost.comments.count %>
             </div>
-            <div class="col-md-3 col-sm-2 col-xs-offset-1 col-xs-4">
-              <% if !micropost.favorite_users.include?(current_user) %>
-                <%= link_to favorites_path(micropost_id: micropost.id), method: :post do %>
-                  <i class="far fa-heart" aria-hidden="true"></i>
-                <% end %>
-              <% else %>
-                <%= link_to favorites_path(micropost_id: micropost.id), method: :delete do %>
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                <% end %>
+            <div class="col-md-3 col-sm-2 czol-xs-offset-1 col-xs-4">
+            <% if micropost.favorite_users.include?(current_user) %>
+              <%= link_to favorites_path(micropost_id: micropost.id), method: :delete do %>
+                <i class="fa fa-heart" aria-hidden="true"></i>
               <% end %>
+            <% else %>
+              <%= link_to favorites_path(micropost_id: micropost.id), method: :post do %>
+                <i class="far fa-heart" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
             <%= micropost.favorite_users.count %>
             </div>
             <div class="col-md-3 col-sm-2 col-xs-4">
@@ -51,7 +51,7 @@
         </div>
       <% end %>
     <% else %>
-      <% @microposts.order('created_at DESC').each do |micropost| %>
+      <% @microposts.recent.each do |micropost| %>
         <div class="row">
           <div class=" micropost-conteiner col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10  col-xs-offset-1 col-xs-10">
             <h2 class="micropost-user-name">

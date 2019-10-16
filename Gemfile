@@ -42,6 +42,7 @@ gem 'omniauth', '<= 1.9.0'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'ransack'
+gem 'rails-i18n', '~> 5.1'
 gem "jquery-rails"
 
 # Use Capistrano for deployment

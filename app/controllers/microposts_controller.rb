@@ -6,11 +6,8 @@ class MicropostsController < ApplicationController
 
   def index
     @microposts = Micropost.page(params[:page]).per(10)
-  end
-
-  def search
-    @search_m = Micropost.ransack(params[:q])
-    @search_microposts = @search_m.result
+    @search_micropost = Micropost.ransack(params[:q])
+    @search_microposts = @search_micropost.result.page(params[:page]).per(10)
   end
 
   def show

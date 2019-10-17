@@ -6,11 +6,10 @@ Rails.application.routes.draw do
     resources :topics, only: [:new, :create, :destroy]
   end
 
-  get 'auth/:provider/callback', to: 'sessions#create'
-
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  get    '/login',                  to: 'sessions#new'
+  post   '/login',                  to: 'sessions#create'
+  get    'auth/:provider/callback', to: 'sessions#create'
+  delete '/logout',                 to: 'sessions#destroy'
 
   resources :users do
     resource :profiles
@@ -19,13 +18,10 @@ Rails.application.routes.draw do
     get :followers, on: :member
   end
 
-  get 'user/search' => 'users#search'
-  get 'micropost/search' => 'microposts#search'
-
   get 'relationships/create'
   get 'relationships/destroy'
 
-  post '/favorites', to: 'favorites#create'
-  delete '/favorites', to: 'favorites#destroy'
+  post    '/favorites',  to: 'favorites#create'
+  delete  '/favorites',  to: 'favorites#destroy'
 end
 

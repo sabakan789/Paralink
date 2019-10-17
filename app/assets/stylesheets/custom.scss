@@ -75,10 +75,6 @@ body {
 }
 
 /* btn*/
-.btn {
-  margin: 10px;
-}
-
 .vertical-btn {
   margin: 15px 0;
 }
@@ -252,6 +248,7 @@ body {
   }
 }
 
+/*comment*/
 .comment-count {
   padding: 10px 0;
 }
@@ -261,6 +258,11 @@ body {
   background-color: #000;
 }
 
+.comment-box {
+  padding-top: 50px;
+}
+
+/*user*/
 .user-profile {
   border: 1px solid #fff;
   background-color: rgba(0, 0, 0, 0.3);
@@ -271,10 +273,6 @@ body {
 	border: 1px solid #dddddd;
 	margin: 20px 0;
 	padding: 20px;
-}
-
-.comment-box {
-  padding-top: 50px;
 }
 
 .index-image {

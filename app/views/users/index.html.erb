@@ -1,34 +1,51 @@
 <div class="wrapper">
   <div class="container add-color default-container">
-    <%= link_to "ユーザーを検索する", user_search_path ,class: 'col-offset-9 col-3 btn btn-white'%>
+    <h1 class="text-white text-center">ユーザー一覧</h1>
     <div class="row">
-      <h1 class="text-center text-white">ユーザー一覧</h1>
-      <div class="container">
-        <% @users.recent.each do |user| %>
-          <div class="row">
-            <div class="micropost-conteiner col-md-offset-3 col-md-6 col-sm-offset-3 col-sm-6 col-xs-offset-2 col-xs-8">
-              <div class="index-user-name">
-                <% if !user.profile.nil? %>
-                  <h2><%= link_to user.name, user_path(user.id),class: 'col-4', :style=>"color:white;" %></h2>
-                  <%= image_tag user.profile.userimage, alt:'#{user.name}のプロフィール画像です', :size => "100x50", class: "index-image col-2" %>
-                <% else %>
-                  <h2><%= link_to user.name, user_path(user.id),class: 'col-4', :style=>"color:white;" %></h2>
-                <% end %>
-                <% if user != current_user %>
-                  <% if user.followed_by?(current_user) %>
-                    <%=link_to "フォロー済み", user_relationships_path(user.id), method: :delete, class: 'pull-right',:style=>"color:white;"%>
-                  <% else %>
-                    <%=link_to "フォローする", user_relationships_path(user.id), method: :post, class: 'pull-right',:style=>"color:white;" %>
-                  <% end %>
-                <% end %>
-              </div>
-            </div>
-          </div>
-        <% end %>
-        <div class="text-center">
-          <%= paginate @users %>
+      <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8  col-xs-offset-1 col-xs-10 form-conter add-color">
+        <%= search_form_for @search_user, url:users_path do |f| %>
+        <div class="input-group">
+          <%= f.search_field :name_cont, placeholder: "キーワード検索", class: "form-control" %>
+          <span class="input-group-btn">
+            <%= button_tag "検索", :name => nil, class: "btn btn-primary" %>
+          </span>
         </div>
+        <% end %>
       </div>
     </div>
+    <% @search_users.each do |result| %>
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8  col-xs-offset-1 col-xs-10 micropost-conteiner">
+          <div class="index-user-name">
+            <% if !result.profile.nil? %>
+              <h2><%= link_to result.name, user_path(result.id),class: 'col-4', :style=>"color:white;" %></h2>
+              <%= image_tag result.profile.userimage, alt:'#{result.name}のプロフィール画像です', :size => "100x50", class: "index-image col-2" %>
+            <% else %>
+              <h2><%= link_to result.name, user_path(result.id),class: 'col-4', :style=>"color:white;" %></h2>
+            <% end %>
+            <% if result != current_user %>
+              <% if result.followed_by?(current_user) %>
+                <%=link_to "フォロー済み", user_relationships_path(result.id), method: :delete, class: 'pull-right',:style=>"color:white;"%>
+              <% else %>
+                <%=link_to "フォローする", user_relationships_path(result.id), method: :post, class: 'pull-right',:style=>"color:white;" %>
+              <% end %>
+            <% end %>
+          </div>
+        <div class="text-center">
+          <%= paginate @search_users %>
+        </div>
+        </div>
+      </div>
+    <% end %>
+    <% unless @search_users.any? %>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 text-center">
+            <h1>キーワードを含むユーザーを検索できませんでした</h1>
+            <h2><%= link_to "ユーザー一覧に戻る", users_path, :style=>"color:#ff0;" %></h2>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

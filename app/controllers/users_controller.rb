@@ -1,13 +1,18 @@
 class UsersController < ApplicationController
+  before_action :user_search
   before_action :login_check, only: %i[search index show edit update follows followers destroy]
   before_action :set_user, only: %i[show edit update destroy follows followers]
   def new
     @user = User.new
   end
 
+  def user_search
+    @search_u = User.ransack(params[:q])
+    @search_users = @search_u.result
+  end
+
   def index
-    @search_user = User.ransack(params[:q])
-    @search_users = @search_user.result.page(params[:page]).per(20)
+    @users = User.page(params[:page]).per(20)
   end
 
   def show

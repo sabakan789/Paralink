@@ -1,21 +1,9 @@
 <div class="wrapper">
   <div class="container add-color default-container">
     <h1 class="text-white text-center">みんなの投稿</h1>
-  <% if logged_in? %>
-    <div class="row">
-      <div class="col-md-offset-3 col-md-6 col-sm-offset-2 col-sm-8  col-xs-offset-1 col-xs-10 form-conter add-color">
-        <%= search_form_for @search_micropost, url:microposts_path do |f| %>
-          <div class="input-group">
-            <%= f.search_field :content_cont, placeholder: "キーワード検索", class: "form-control" %>
-            <span class="input-group-btn">
-              <%= button_tag "検索", :name => nil, class: "btn btn-primary" %>
-            </span>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <% @search_microposts.recent.each do |micropost| %>
-      <div class="container">
+    <% if logged_in? %>
+      <%= link_to "キーワードで検索する", micropost_search_path ,class: 'pull-right col-3  btn btn-white'%>
+      <% @microposts.recent.each do |micropost| %>
         <div class="row">
           <div class="micropost-conteiner col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-offset-1 col-xs-10">
             <h2 class="micropost-user-name">
@@ -29,7 +17,7 @@
             <div class="row">
               <% micropost.topics.each do |topic| %>
                 <div class="col-md-3 index-image">
-                  <%= link_to micropost_path(micropost) do %>
+                  <%= link_to micropost_path(topic.micropost) do %>
                     <%= image_tag topic.image.url , alt:'topic.description',class: "img-responsive center-block"%>
                   <% end %>
                 </div>
@@ -38,16 +26,16 @@
             <div class="col-md-3 col-sm-2 col-xs-5 comment-count">
               コメント数：<%= micropost.comments.count %>
             </div>
-            <div class="col-md-3 col-sm-2 col-xs-offset-1 col-xs-4">
-              <% if !micropost.favorite_users.include?(current_user) %>
-                <%= link_to favorites_path(micropost_id: micropost.id), method: :post do %>
-                  <i class="far fa-heart" aria-hidden="true"></i>
-                <% end %>
-              <% else %>
-                <%= link_to favorites_path(micropost_id: micropost.id), method: :delete do %>
-                  <i class="fa fa-heart" aria-hidden="true"></i>
-                <% end %>
+            <div class="col-md-3 col-sm-2 czol-xs-offset-1 col-xs-4">
+            <% if micropost.favorite_users.include?(current_user) %>
+              <%= link_to favorites_path(micropost_id: micropost.id), method: :delete do %>
+                <i class="fa fa-heart" aria-hidden="true"></i>
               <% end %>
+            <% else %>
+              <%= link_to favorites_path(micropost_id: micropost.id), method: :post do %>
+                <i class="far fa-heart" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
             <%= micropost.favorite_users.count %>
             </div>
             <div class="col-md-3 col-sm-2 col-xs-4">
@@ -61,21 +49,7 @@
             </div>
           </div>
         </div>
-        <div class="text-center">
-      <%= paginate @search_microposts %>
-    </div>
-      </div>
-    <% end %>
-    <% unless @search_microposts.any? %>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 text-center">
-            <h1>キーワードを含む投稿を検索できませんでした</h1>
-            <h2><%= link_to "みんなの投稿に戻る", microposts_path, :style=>"color:#ff0;" %></h2>
-          </div>
-        </div>
-      </div>
-    <% end %>
+      <% end %>
     <% else %>
       <% @microposts.recent.each do |micropost| %>
         <div class="row">
@@ -98,7 +72,7 @@
       <% end %>
     <% end %>
     <div class="text-center">
-      <%= paginate @search_microposts %>
+      <%= paginate @microposts %>
     </div>
   </div>
 </div>

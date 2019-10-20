@@ -5,13 +5,6 @@ RSpec.describe UsersController, type: :controller do
     @user = FactoryBot.create(:user)
   end
   describe '未ログイン状態' do
-    context 'GET #search の場合' do
-      it 'ルートページへ遷移する' do
-        get :search
-        expect(response.status).to_not eq '200'
-        expect(response).to redirect_to root_path
-      end
-    end
     context 'GET #index の場合' do
       it 'ルートページへ遷移する' do
         get :index

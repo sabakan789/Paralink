@@ -13,13 +13,6 @@ RSpec.describe MicropostsController, type: :controller do
         expect(response).to redirect_to root_path
       end
     end
-    context 'GET #search の場合' do
-      it 'ルートページへ遷移する' do
-        get :search
-        expect(response.status).to_not eq '200'
-        expect(response).to redirect_to root_path
-      end
-    end
     context 'GET #show の場合' do
       it 'ルートページへ遷移する' do
         get :show, params: { id: @micropost.id }

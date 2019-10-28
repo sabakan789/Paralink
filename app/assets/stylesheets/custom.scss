@@ -9,8 +9,10 @@ body {
 
 .wrapper {
   width: 100vw;
-  height: 100vh;
-  padding-bottom: 30px;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 60px;
+  box-sizing: border-box;
 }
 
 .default-container {
@@ -56,7 +58,7 @@ body {
 }
 
 .form-conter {
-  border: 2px solid #0FF;
+  border: 2px solid #0ff;
   padding: 10px;
 }
 
@@ -72,6 +74,21 @@ body {
 .erb-text {
   word-break: normal;
   width: 600px;
+}
+
+/* footer */
+footer {
+  width: 100%;
+  background-color: #666953;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  position: fixed;
+  margin-top: auto;
+  bottom: 0;
+  a {
+    color: #fff;
+  }
 }
 
 /* btn*/
@@ -106,7 +123,7 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   &:hover {
     color: #000;
-    background-color: #FF9;
+    background-color: #ff9;
   }
 }
 
@@ -120,7 +137,7 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
   &:hover {
     color: #000;
-    background-color: #9FF;
+    background-color: #9ff;
   }
 }
 
@@ -131,7 +148,7 @@ body {
   margin-bottom: 5px;
   &:hover {
     color: #000;
-    background-color: #FF9;
+    background-color: #ff9;
   }
 }
 
@@ -142,7 +159,7 @@ body {
   margin-bottom: 5px;
   &:hover {
     color: #000;
-    background-color: #9FF;
+    background-color: #9ff;
   }
 }
 
@@ -229,7 +246,7 @@ body {
 }
 
 .fa {
-  color :#f00;
+  color: #f00;
 }
 
 .fa-heart {
@@ -270,9 +287,9 @@ body {
 }
 
 .bgred {
-	border: 1px solid #dddddd;
-	margin: 20px 0;
-	padding: 20px;
+  border: 1px solid #dddddd;
+  margin: 20px 0;
+  padding: 20px;
 }
 
 .index-image {

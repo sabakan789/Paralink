@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'homes#top'
+  get  'privacy', to: 'homes#privacy'
 
   resources :microposts do
     resource :comments, only: [:create, :destroy]

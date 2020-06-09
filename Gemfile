@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem "actionview "、" > = 5.2.4.2 "
+gem "actionpack", ">= 5.2.4.3"
+gem "activesupport "、" > = 5.2.4.3 "
 gem 'bootsnap', require: false
 gem 'bootstrap-sass'
 gem 'bootstrap-social-rails'
